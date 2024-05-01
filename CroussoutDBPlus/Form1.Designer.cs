@@ -29,17 +29,18 @@ namespace CroussoutDBPlus
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBoxItemSearch = new System.Windows.Forms.GroupBox();
+            this.comboBoxItemName = new System.Windows.Forms.ComboBox();
             this.buttonItemUpdate = new System.Windows.Forms.Button();
             this.textBoxItemID = new System.Windows.Forms.TextBox();
             this.labelItemID = new System.Windows.Forms.Label();
             this.labelItemName = new System.Windows.Forms.Label();
             this.treeViewRecipe = new System.Windows.Forms.TreeView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBoxItemName = new System.Windows.Forms.ComboBox();
             this.buttonSaveWeaponList = new System.Windows.Forms.Button();
+            this.treeListViewItemRecipe = new BrightIdeasSoftware.TreeListView();
             this.groupBoxItemSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxItemSearch
@@ -55,6 +56,15 @@ namespace CroussoutDBPlus
             this.groupBoxItemSearch.TabIndex = 0;
             this.groupBoxItemSearch.TabStop = false;
             this.groupBoxItemSearch.Text = "Recherche d\'item";
+            // 
+            // comboBoxItemName
+            // 
+            this.comboBoxItemName.FormattingEnabled = true;
+            this.comboBoxItemName.Location = new System.Drawing.Point(66, 20);
+            this.comboBoxItemName.Name = "comboBoxItemName";
+            this.comboBoxItemName.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxItemName.TabIndex = 5;
+            this.comboBoxItemName.SelectedIndexChanged += new System.EventHandler(this.comboBoxItemName_SelectedIndexChanged);
             // 
             // buttonItemUpdate
             // 
@@ -98,23 +108,6 @@ namespace CroussoutDBPlus
             this.treeViewRecipe.Size = new System.Drawing.Size(766, 303);
             this.treeViewRecipe.TabIndex = 2;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 460);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(766, 488);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // comboBoxItemName
-            // 
-            this.comboBoxItemName.FormattingEnabled = true;
-            this.comboBoxItemName.Location = new System.Drawing.Point(66, 20);
-            this.comboBoxItemName.Name = "comboBoxItemName";
-            this.comboBoxItemName.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxItemName.TabIndex = 5;
-            this.comboBoxItemName.SelectedIndexChanged += new System.EventHandler(this.comboBoxItemName_SelectedIndexChanged);
-            // 
             // buttonSaveWeaponList
             // 
             this.buttonSaveWeaponList.Location = new System.Drawing.Point(491, 95);
@@ -125,14 +118,27 @@ namespace CroussoutDBPlus
             this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
             this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
             // 
+            // treeListViewItemRecipe
+            // 
+            this.treeListViewItemRecipe.CellEditUseWholeCell = false;
+            this.treeListViewItemRecipe.HideSelection = false;
+            this.treeListViewItemRecipe.Location = new System.Drawing.Point(13, 458);
+            this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
+            this.treeListViewItemRecipe.ShowGroups = false;
+            this.treeListViewItemRecipe.Size = new System.Drawing.Size(1239, 515);
+            this.treeListViewItemRecipe.TabIndex = 5;
+            this.treeListViewItemRecipe.UseCompatibleStateImageBehavior = false;
+            this.treeListViewItemRecipe.View = System.Windows.Forms.View.Details;
+            this.treeListViewItemRecipe.VirtualMode = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1264, 985);
+            this.Controls.Add(this.treeListViewItemRecipe);
             this.Controls.Add(this.buttonSaveWeaponList);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.treeViewRecipe);
             this.Controls.Add(this.groupBoxItemSearch);
             this.Name = "Form1";
@@ -141,7 +147,7 @@ namespace CroussoutDBPlus
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxItemSearch.ResumeLayout(false);
             this.groupBoxItemSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -154,9 +160,9 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.Label labelItemID;
         private System.Windows.Forms.Label labelItemName;
         private System.Windows.Forms.TreeView treeViewRecipe;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBoxItemName;
         private System.Windows.Forms.Button buttonSaveWeaponList;
+        private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
     }
 }
 

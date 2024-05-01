@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Windows.Controls;
+using BrightIdeasSoftware;
 // fin lib
 using System.Drawing;
 using System.Linq;
@@ -32,12 +33,16 @@ namespace CroussoutDBPlus
         //test sur sauvegarde de la liste d'armes
         //public weaponList = new WeaponList();
 
+
+        // init de la classe weaponlist
         string wljson = "";
         WeaponList weaponList = new WeaponList
         {
             weapons = new List<Weapon>()
         };
 
+        //treeListViewItemRecipe
+        //TreeListView treeListView = new TreeListView();
 
         //----------  ----------//
 
@@ -56,10 +61,9 @@ namespace CroussoutDBPlus
             // preset du punisher pour tests
             textBoxItemID.Text = "909";
 
+            // chargement de weaponlist.json dans la classe weaponlist
             wljson = LoadWeaponListFromJson();
             WeaponList weaponList = JsonConvert.DeserializeObject<WeaponList>(wljson);
-
-
 
             // synchronisation de la classe weaponlist avec la combobox de selection d'arme
             BindingSource bindingSource = new BindingSource();
@@ -67,6 +71,14 @@ namespace CroussoutDBPlus
             comboBoxItemName.DataSource = bindingSource;
             comboBoxItemName.DisplayMember = "Name";
             comboBoxItemName.ValueMember = "Id";
+
+
+            // creation des colones pour TLV 
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Id", "Id"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Name", "Name"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("BuyPrice", "BuyPrice"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("CraftingBuySum", "CraftingBuySum"));
+
 
 
             //formatage de la tree view d'affichage
@@ -102,22 +114,13 @@ namespace CroussoutDBPlus
             CrossoutDb test = CrossoutDb.FromJson(json);
 
 
-
-            // test sur les classes
-            //Person person = new Person { Name = "Bob", Age = 30 };
-
-            //ChangeNameByReference(ref person);
-
-            // test fonctionement class CrossoutDb - fonctionel !!
-            //MessageBox.Show(test.Recipe.Item.Name, "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-            //textBoxItemName.Text = actualRecipe.recipe.item.name;
-            //textBoxItemName.Text = person.Name;
-
             // remplissage de la treeview
             FeedTreeView(actualRecipe);
+            // Add multiple new lines to the TreeListView
 
+
+            treeListViewItemRecipe.AddObject(test.Recipe.Item);
+            treeListViewItemRecipe.AddObject(test.Recipe.Ingredients[0].Item);
 
 
         }
@@ -244,6 +247,9 @@ namespace CroussoutDBPlus
 
             return js;
         }
+
+
+
 
 
 
