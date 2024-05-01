@@ -7,7 +7,7 @@ using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
-using System.Windows.Controls;
+//using System.Windows.Controls;
 using BrightIdeasSoftware;
 // fin lib
 using System.Drawing;
@@ -105,7 +105,7 @@ namespace CroussoutDBPlus
             // recuperation de l'id de l'item
             string id = textBoxItemID.Text;
             // telechargement du json de l'item
-            string json = await SendWebRequest(apiUrlPrefix + id);
+            string json = await SendWebRequestForJson(apiUrlPrefix + id);
             // chargement du json dans data
             dynamic actualRecipe = JsonConvert.DeserializeObject<dynamic>(json);
 
@@ -116,11 +116,23 @@ namespace CroussoutDBPlus
 
             // remplissage de la treeview
             FeedTreeView(actualRecipe);
+
+            // download the png of the item
+            Image icon = await SendWebRequestForPng(ImageUrlPrefix + id + ".png");
+
+
+
+
             // Add multiple new lines to the TreeListView
 
 
             treeListViewItemRecipe.AddObject(test.Recipe.Item);
             treeListViewItemRecipe.AddObject(test.Recipe.Ingredients[0].Item);
+
+            // Add the image to the ImageList of the TreeListView
+            //treeListViewItemRecipe.ImageList.Images.Add(icon);
+            // Set the ImageIndex property of the TreeListView node
+            //treeListViewItemRecipe.Nodes[0].ImageIndex = treeListViewItemRecipe.ImageList.Images.Count - 1;
 
 
         }
@@ -157,13 +169,47 @@ namespace CroussoutDBPlus
 
         //---------- fonction de récupération de json sur api Cdb ----------//
 
-        private async Task<string> SendWebRequest(string url)
+        private async Task<string> SendWebRequestForJson(string url)
         {
             using (WebClient client = new WebClient())
             {
                 string json = await client.DownloadStringTaskAsync(new Uri(url));
                 return json;
             }
+
+        }
+
+        private async Task<Image> SendWebRequestForPng(string url)
+        {
+            // Create a new WebClient object
+            using (WebClient client = new WebClient())
+            {
+                // Download the image from the URL as a byte array
+                byte[] imageData = client.DownloadData(url);
+                // Create a new MemoryStream object from the byte array
+                using (MemoryStream ms = new MemoryStream(imageData))
+                {
+                    // Create a new Image object from the MemoryStream
+                    Image image = Image.FromStream(ms);
+
+                    return image;
+
+                }
+            }
+
+
+            //// Add the image to the ImageList of the TreeListView
+            //treeListView1.ImageList.Images.Add(image);
+            //// Set the ImageIndex property of the TreeListView node
+            //treeListView1.Nodes[0].ImageIndex = treeListView1.ImageList.Images.Count - 1;
+
+            //using (WebClient client = new WebClient())
+            //{
+            //    byte[] iconData = client.DownloadData(url);
+            //    Image iconImage = Image.FromStream(new MemoryStream(iconData));
+            //    //string json = await client.DownloadStringTaskAsync(new Uri(url));
+            //    return iconImage;
+            //}
 
         }
 
