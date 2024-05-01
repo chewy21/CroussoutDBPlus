@@ -20,7 +20,7 @@ using Newtonsoft.Json.Converters;
 // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
 //
 //    using CroussoutDBPlus;
-//
+// 
 //    var crossoutDb = CrossoutDb.FromJson(jsonString);
 
 namespace CroussoutDBPlus
