@@ -105,7 +105,7 @@ namespace CroussoutDBPlus
             // 
             this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
             this.treeViewRecipe.Name = "treeViewRecipe";
-            this.treeViewRecipe.Size = new System.Drawing.Size(766, 303);
+            this.treeViewRecipe.Size = new System.Drawing.Size(385, 303);
             this.treeViewRecipe.TabIndex = 2;
             // 
             // buttonSaveWeaponList
