@@ -46,6 +46,11 @@ namespace CroussoutDBPlus
 
         //----------  ----------//
 
+        private List<Node> listOfItem;
+
+
+
+
         //MessageBox.Show(Item.item.name.ToString(), "info" , MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         //---------- fonction d'init de l'interface graphique ----------//
@@ -74,11 +79,22 @@ namespace CroussoutDBPlus
 
 
             // creation des colones pour TLV 
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Id", "Id"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Name", "Name"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("BuyPrice", "BuyPrice"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("CraftingBuySum", "CraftingBuySum"));
 
+            // set the delegate that the tree uses to know if a node is expandable
+            treeListViewItemRecipe.CanExpandGetter = x => (x as Node).Children.Count > 0;
+            // set the delegate that the tree uses to know the children of a node
+            treeListViewItemRecipe.ChildrenGetter = x => (x as Node).Children;
+
+
+
+            // set columns of treelistview
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Identificateur", "Id"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Icone", "imageIndex"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Nom", "Name"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Buy Price", "formatBuyPrice"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Crafting Buy Sum", "formatCraftingBuySum"));
+            treeListViewItemRecipe.AutoResizeColumns();
+            
 
 
             //formatage de la tree view d'affichage
@@ -106,28 +122,65 @@ namespace CroussoutDBPlus
             string id = textBoxItemID.Text;
             // telechargement du json de l'item
             string json = await SendWebRequestForJson(apiUrlPrefix + id);
-            // chargement du json dans data
-            dynamic actualRecipe = JsonConvert.DeserializeObject<dynamic>(json);
 
-
+            // chargement du json dans actualRecipe
             // test json to class : ok
-            CrossoutDb test = CrossoutDb.FromJson(json);
+            CrossoutDb actualRecipe = CrossoutDb.FromJson(json);
 
-
-            // remplissage de la treeview
-            FeedTreeView(actualRecipe);
 
             // download the png of the item
             Image icon = await SendWebRequestForPng(ImageUrlPrefix + id + ".png");
 
 
 
+            // create fake nodes
+
+            ImageList imageList = new ImageList();
+            imageList.Images.Add("909",Image.FromFile("data/909.png"));
+            imageList.Images.Add("168",Image.FromFile("data/168.png"));
+            string imageIndex = "909";
+
+            treeListViewItemRecipe.SmallImageList = imageList;
+            //treeListViewItemRecipe.Columns[1].ImageIndex = 0;
+            //treeListViewItemRecipe.SmallImageList.
+
+
+            var parent1 = new Node(actualRecipe.Recipe.Item.Id, imageIndex, actualRecipe.Recipe.Item.Name, actualRecipe.Recipe.Item.FormatBuyPrice, actualRecipe.Recipe.Item.FormatCraftingBuySum) ;
+            //parent1.SelectImageIndex = smallImageList.Images.IndexOfKey(imageIndex);
+
+            foreach (var Item in actualRecipe.Recipe.Ingredients)
+            {
+                imageIndex = "168";
+                //treeListViewItemRecipe.Columns[1].ImageIndex = 1;
+                parent1.Children.Add(new Node(Item.Item.Id, imageIndex, Item.Item.Name, Item.FormatBuyPriceTimesNumber, "")) ; //, Item.formatBuyPrice, Item.FormatCraftingBuySum);
+                //parent1.Children.Add(new Node(909, "punisher"));
+                //parent1.Children.Add(new Node(909, "punisher"));
+
+            }
+
+            //var parent1 = new Node(909,"punisher");
+
+
+            listOfItem = new List<Node> { parent1 };
+
+            treeListViewItemRecipe.Roots = listOfItem;
+
+            treeListViewItemRecipe.AutoResizeColumns();
+
 
             // Add multiple new lines to the TreeListView
 
 
-            treeListViewItemRecipe.AddObject(test.Recipe.Item);
-            treeListViewItemRecipe.AddObject(test.Recipe.Ingredients[0].Item);
+            //treeListViewItemRecipe.AddObject(actualRecipe.Recipe.Item);
+            //treeListViewItemRecipe.AddObject(actualRecipe.Recipe.Ingredients[0].Item);
+            //int testtlv = treeListViewItemRecipe.Items.Count;
+            //MessageBox.Show(testtlv.ToString(), "info" , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+
+            //treeListViewItemRecipe.Items.Add(testtlv.ToString());
+            //treeListViewItemRecipe.VirtualListSize;
 
             // Add the image to the ImageList of the TreeListView
             //treeListViewItemRecipe.ImageList.Images.Add(icon);
@@ -213,64 +266,9 @@ namespace CroussoutDBPlus
 
         }
 
-        private void FeedTreeView( dynamic recipe)
-        {
-            // remplissage de la treeview
-            TreeNode rootNode = new TreeNode("");
-            rootNode.Text = recipe.recipe.item.name;
-            treeViewRecipe.Nodes.Add(rootNode);
-
-            foreach (var Item in recipe.recipe.ingredients)
-            {
-                TreeNode childNode = new TreeNode("");
-                int quantity;
-                if (Item.item.amount != 0)
-                {
-                    quantity = Item.number / Item.item.amount;
-                }
-                else
-                {
-                    quantity = Item.number;
-                }
-
-                childNode.Text = Item.item.name;
-
-                //childNode.Text = String.Format("{0} \t\t\t {1} \t\t\t {2}", Item.item.name + " ", " Quantité : " + quantity , " buy price : " + Item.formatBuyPriceTimesNumber);
-                //string column1 = Item.item.name + "".PadRight(30);
-                //string column2 = "Quantité : " + quantity +"".PadRight(30);
-                //string column3 = "Buy price : " + Item.formatBuyPriceTimesNumber + "".PadRight(30);
-                //childNode.Text = column1 + column2 + column3;
-
-
-                rootNode.Nodes.Add(childNode);
-
-            }
-        }
-
-        //---------- fonction de test sur les classes ----------//
-
-        public void ChangeNameByValue(Person person)
-
-        {
-
-            person.Name = "Alice";
-
-        }
-
-
-        public void ChangeNameByReference(ref Person person)
-
-        {
-
-            person.Name = "Alice";
-
-        }
-
-
-
         //---------- fonction de sauvegarde de weaponList en json ----------//
 
-        public void SaveWeaponListJsonToFile (string js)
+        public void SaveWeaponListJsonToFile(string js)
         {
             //string filePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "weaponlist.json");
             //System.IO.File.WriteAllText(filePath, js);
@@ -289,12 +287,54 @@ namespace CroussoutDBPlus
         public string LoadWeaponListFromJson()
         {
             string js = File.ReadAllText("data/weaponlist.json");
-            
+
 
             return js;
         }
 
+        //---------- test classe node pour treelistview ----------//
 
+        // embedded class
+        class Node
+        {
+            public long Id { get; private set; }
+            public string imageIndex { get; private set; }
+            public string Name { get; private set; }
+            public string formatBuyPrice { get; private set; }
+            public string formatCraftingBuySum { get; private set; }
+
+            //public string Column1 { get; private set; }
+            //public string Column2 { get; private set; }
+            //public string Column3 { get; private set; }
+            public List<Node> Children { get; private set; }
+            public Node(long Id, string imageIndex, string Name, string formatBuyPrice, string formatCraftingBuySum)//, string col1, string col2, string col3)
+            {
+                this.Id = Id;
+                this.imageIndex = imageIndex;
+                this.Name = Name;
+                this.formatBuyPrice = formatBuyPrice;
+                this.formatCraftingBuySum = formatCraftingBuySum;
+                this.Children = new List<Node>();
+
+            }
+        }
+
+        private void buttonColWidth_Click(object sender, EventArgs e)
+        {
+            treeListViewItemRecipe.AutoResizeColumns();
+        }
+
+        //private void TreeListViewItemRecipe_AfterExpand(object sender, TreeListViewItemrecipeEventArgs e)
+
+        //{
+
+        //    // This event is triggered after a node has been expanded
+
+        //    // You can add your custom logic here
+
+        //    Console.WriteLine($"Node '{e.Node.Text}' expanded.");
+
+        //}
 
 
 

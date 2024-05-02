@@ -36,15 +36,16 @@ namespace CroussoutDBPlus
             this.textBoxItemID = new System.Windows.Forms.TextBox();
             this.labelItemID = new System.Windows.Forms.Label();
             this.labelItemName = new System.Windows.Forms.Label();
-            this.treeViewRecipe = new System.Windows.Forms.TreeView();
             this.buttonSaveWeaponList = new System.Windows.Forms.Button();
             this.treeListViewItemRecipe = new BrightIdeasSoftware.TreeListView();
+            this.buttonColWidth = new System.Windows.Forms.Button();
             this.groupBoxItemSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxItemSearch
             // 
+            this.groupBoxItemSearch.Controls.Add(this.buttonColWidth);
             this.groupBoxItemSearch.Controls.Add(this.comboBoxItemName);
             this.groupBoxItemSearch.Controls.Add(this.buttonItemUpdate);
             this.groupBoxItemSearch.Controls.Add(this.textBoxItemID);
@@ -68,7 +69,7 @@ namespace CroussoutDBPlus
             // 
             // buttonItemUpdate
             // 
-            this.buttonItemUpdate.Location = new System.Drawing.Point(310, 82);
+            this.buttonItemUpdate.Location = new System.Drawing.Point(216, 82);
             this.buttonItemUpdate.Name = "buttonItemUpdate";
             this.buttonItemUpdate.Size = new System.Drawing.Size(75, 23);
             this.buttonItemUpdate.TabIndex = 4;
@@ -101,13 +102,6 @@ namespace CroussoutDBPlus
             this.labelItemName.TabIndex = 0;
             this.labelItemName.Text = "Nom :";
             // 
-            // treeViewRecipe
-            // 
-            this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
-            this.treeViewRecipe.Name = "treeViewRecipe";
-            this.treeViewRecipe.Size = new System.Drawing.Size(766, 303);
-            this.treeViewRecipe.TabIndex = 2;
-            // 
             // buttonSaveWeaponList
             // 
             this.buttonSaveWeaponList.Location = new System.Drawing.Point(491, 95);
@@ -122,14 +116,27 @@ namespace CroussoutDBPlus
             // 
             this.treeListViewItemRecipe.CellEditUseWholeCell = false;
             this.treeListViewItemRecipe.HideSelection = false;
-            this.treeListViewItemRecipe.Location = new System.Drawing.Point(13, 458);
+            this.treeListViewItemRecipe.Location = new System.Drawing.Point(13, 139);
             this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
             this.treeListViewItemRecipe.ShowGroups = false;
-            this.treeListViewItemRecipe.Size = new System.Drawing.Size(1239, 515);
+            this.treeListViewItemRecipe.ShowImagesOnSubItems = true;
+            this.treeListViewItemRecipe.Size = new System.Drawing.Size(817, 834);
             this.treeListViewItemRecipe.TabIndex = 5;
+            this.treeListViewItemRecipe.UseAlternatingBackColors = true;
             this.treeListViewItemRecipe.UseCompatibleStateImageBehavior = false;
             this.treeListViewItemRecipe.View = System.Windows.Forms.View.Details;
             this.treeListViewItemRecipe.VirtualMode = true;
+            //this.treeListViewItemRecipe.Expanded += new System.EventHandler(this.treeListViewItemRecipe_Expanded);
+            // 
+            // buttonColWidth
+            // 
+            this.buttonColWidth.Location = new System.Drawing.Point(310, 82);
+            this.buttonColWidth.Name = "buttonColWidth";
+            this.buttonColWidth.Size = new System.Drawing.Size(75, 23);
+            this.buttonColWidth.TabIndex = 6;
+            this.buttonColWidth.Text = "Maj larg. col";
+            this.buttonColWidth.UseVisualStyleBackColor = true;
+            this.buttonColWidth.Click += new System.EventHandler(this.buttonColWidth_Click);
             // 
             // Form1
             // 
@@ -139,7 +146,6 @@ namespace CroussoutDBPlus
             this.ClientSize = new System.Drawing.Size(1264, 985);
             this.Controls.Add(this.treeListViewItemRecipe);
             this.Controls.Add(this.buttonSaveWeaponList);
-            this.Controls.Add(this.treeViewRecipe);
             this.Controls.Add(this.groupBoxItemSearch);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -159,10 +165,10 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.TextBox textBoxItemID;
         private System.Windows.Forms.Label labelItemID;
         private System.Windows.Forms.Label labelItemName;
-        private System.Windows.Forms.TreeView treeViewRecipe;
         private System.Windows.Forms.ComboBox comboBoxItemName;
         private System.Windows.Forms.Button buttonSaveWeaponList;
         private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
+        private System.Windows.Forms.Button buttonColWidth;
     }
 }
 
