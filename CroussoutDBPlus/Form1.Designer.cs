@@ -89,6 +89,26 @@ namespace CroussoutDBPlus
             // 
             resources.ApplyResources(this.labelItemName, "labelItemName");
             this.labelItemName.Name = "labelItemName";
+            this.labelItemName.Size = new System.Drawing.Size(35, 13);
+            this.labelItemName.TabIndex = 0;
+            this.labelItemName.Text = "Nom :";
+            // 
+            // treeViewRecipe
+            // 
+            this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
+            this.treeViewRecipe.Name = "treeViewRecipe";
+            this.treeViewRecipe.Size = new System.Drawing.Size(385, 303);
+            this.treeViewRecipe.TabIndex = 2;
+            // 
+            // buttonSaveWeaponList
+            // 
+            this.buttonSaveWeaponList.Location = new System.Drawing.Point(491, 95);
+            this.buttonSaveWeaponList.Name = "buttonSaveWeaponList";
+            this.buttonSaveWeaponList.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveWeaponList.TabIndex = 4;
+            this.buttonSaveWeaponList.Text = "Save Weapon List";
+            this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
+            this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
             // 
             // treeListViewItemRecipe
             // 
