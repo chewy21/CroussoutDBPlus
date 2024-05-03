@@ -60,7 +60,17 @@ namespace CroussoutDBPlus
         public Form1()
         {
             InitializeComponent();
+            // In your form's constructor or Load event handler, wire up the event handlers.
 
+
+            
+            // initialize the TreeView and ListBox
+
+            
+
+            treeViewRecipe.AfterExpand += treeViewRecipe_AfterExpand;
+
+            treeViewRecipe.AfterCollapse += treeViewRecipe_AfterCollapse;
         }
 
         private void Form1_Load(object sender, EventArgs e)

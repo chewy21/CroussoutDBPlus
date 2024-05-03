@@ -97,7 +97,7 @@ namespace CroussoutDBPlus
             // 
             this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
             this.treeViewRecipe.Name = "treeViewRecipe";
-            this.treeViewRecipe.Size = new System.Drawing.Size(385, 303);
+            this.treeViewRecipe.Size = new System.Drawing.Size(404, 836);
             this.treeViewRecipe.TabIndex = 2;
             // 
             // buttonSaveWeaponList
@@ -110,7 +110,7 @@ namespace CroussoutDBPlus
             this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
             this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
             // 
-            // treeListViewItemRecipe
+            // listBoxRecipe
             // 
             this.treeListViewItemRecipe.AlternateRowBackColor = System.Drawing.Color.WhiteSmoke;
             this.treeListViewItemRecipe.BackColor = System.Drawing.SystemColors.ScrollBar;
