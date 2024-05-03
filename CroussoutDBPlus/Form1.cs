@@ -63,10 +63,10 @@ namespace CroussoutDBPlus
             // In your form's constructor or Load event handler, wire up the event handlers.
 
 
-            
+
             // initialize the TreeView and ListBox
 
-            
+
 
             treeViewRecipe.AfterExpand += treeViewRecipe_AfterExpand;
 
@@ -391,11 +391,35 @@ namespace CroussoutDBPlus
         //---------- fonction de récupération de json sur api Cdb ----------//
 
         private async Task<string> SendWebRequestForJson(string url)
+
         {
+
             using (WebClient client = new WebClient())
+
             {
-                string json = await client.DownloadStringTaskAsync(new Uri(url));
-                return json;
+
+                try
+
+                {
+
+                    string json = await client.DownloadStringTaskAsync(new Uri(url));
+
+                    return json;
+
+                }
+
+                catch (WebException ex)
+
+                {
+
+                    // Handle the error here. For example, you can return an empty string or log the error.
+
+                    Console.WriteLine("Error downloading JSON from {0}: {1}", url, ex.Message);
+
+                    return "";
+
+                }
+
             }
 
         }
