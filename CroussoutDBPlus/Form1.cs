@@ -33,6 +33,8 @@ namespace CroussoutDBPlus
         //test sur sauvegarde de la liste d'armes
         //public weaponList = new WeaponList();
 
+        Dictionary<string, Recipe> recipeDictionary = new Dictionary<string, Recipe>();
+
 
         // init de la classe weaponlist
         string wljson = "";
@@ -41,8 +43,7 @@ namespace CroussoutDBPlus
             weapons = new List<Weapon>()
         };
 
-        //treeListViewItemRecipe
-        //TreeListView treeListView = new TreeListView();
+
 
         //----------  ----------//
 
@@ -53,7 +54,17 @@ namespace CroussoutDBPlus
         public Form1()
         {
             InitializeComponent();
+            // In your form's constructor or Load event handler, wire up the event handlers.
 
+
+            
+            // initialize the TreeView and ListBox
+
+            
+
+            treeViewRecipe.AfterExpand += treeViewRecipe_AfterExpand;
+
+            treeViewRecipe.AfterCollapse += treeViewRecipe_AfterCollapse;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -73,23 +84,7 @@ namespace CroussoutDBPlus
             comboBoxItemName.ValueMember = "Id";
 
 
-            // creation des colones pour TLV 
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Id", "Id"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Name", "Name"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("BuyPrice", "BuyPrice"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("CraftingBuySum", "CraftingBuySum"));
 
-
-
-            //formatage de la tree view d'affichage
-            //TreeViewColumn column1 = new TreeViewColumn();
-            //column1.Header = "Column 1";
-            //column1.Width = 100;
-            //TreeViewColumn column2 = new TreeViewColumn();
-            //column1.Header = "Column 2";
-            //column1.Width = 100;
-            //treeViewRecipe.Columns.Add(column1);
-            //treeViewRecipe.Columns.Add(column2);
         }
 
         //__________//                                                  //__________//
@@ -107,32 +102,20 @@ namespace CroussoutDBPlus
             // telechargement du json de l'item
             string json = await SendWebRequestForJson(apiUrlPrefix + id);
             // chargement du json dans data
-            dynamic actualRecipe = JsonConvert.DeserializeObject<dynamic>(json);
-
+            //dynamic actualRecipe = JsonConvert.DeserializeObject<dynamic>(json);
 
             // test json to class : ok
-            CrossoutDb test = CrossoutDb.FromJson(json);
-
+            CrossoutDb actualRecipe = CrossoutDb.FromJson(json);
 
             // remplissage de la treeview
-            FeedTreeView(actualRecipe);
+            //FeedTreeView(actualRecipe);
+            //FeedTreeViewAndListBox(actualRecipe);
 
             // download the png of the item
             Image icon = await SendWebRequestForPng(ImageUrlPrefix + id + ".png");
 
-
-
-
-            // Add multiple new lines to the TreeListView
-
-
-            treeListViewItemRecipe.AddObject(test.Recipe.Item);
-            treeListViewItemRecipe.AddObject(test.Recipe.Ingredients[0].Item);
-
-            // Add the image to the ImageList of the TreeListView
-            //treeListViewItemRecipe.ImageList.Images.Add(icon);
-            // Set the ImageIndex property of the TreeListView node
-            //treeListViewItemRecipe.Nodes[0].ImageIndex = treeListViewItemRecipe.ImageList.Images.Count - 1;
+            // Add multiple new lines to the TreeView
+            PopulateTreeView(treeViewRecipe, actualRecipe.Recipe);
 
 
         }
@@ -198,53 +181,122 @@ namespace CroussoutDBPlus
             }
 
 
-            //// Add the image to the ImageList of the TreeListView
-            //treeListView1.ImageList.Images.Add(image);
-            //// Set the ImageIndex property of the TreeListView node
-            //treeListView1.Nodes[0].ImageIndex = treeListView1.ImageList.Images.Count - 1;
-
-            //using (WebClient client = new WebClient())
-            //{
-            //    byte[] iconData = client.DownloadData(url);
-            //    Image iconImage = Image.FromStream(new MemoryStream(iconData));
-            //    //string json = await client.DownloadStringTaskAsync(new Uri(url));
-            //    return iconImage;
-            //}
 
         }
 
-        private void FeedTreeView( dynamic recipe)
+        //private void FeedTreeView( dynamic recipe)
+        //{
+        //    // remplissage de la treeview
+        //    TreeNode rootNode = new TreeNode("");
+        //    rootNode.Text = recipe.recipe.item.name;
+        //    treeViewRecipe.Nodes.Add(rootNode);
+
+        //    foreach (var Item in recipe.recipe.ingredients)
+        //    {
+        //        TreeNode childNode = new TreeNode("");
+        //        int quantity;
+        //        if (Item.item.amount != 0)
+        //        {
+        //            quantity = Item.number / Item.item.amount;
+        //        }
+        //        else
+        //        {
+        //            quantity = Item.number;
+        //        }
+
+        //        childNode.Text = Item.item.name;
+
+        //        //childNode.Text = String.Format("{0} \t\t\t {1} \t\t\t {2}", Item.item.name + " ", " Quantité : " + quantity , " buy price : " + Item.formatBuyPriceTimesNumber);
+        //        //string column1 = Item.item.name + "".PadRight(30);
+        //        //string column2 = "Quantité : " + quantity +"".PadRight(30);
+        //        //string column3 = "Buy price : " + Item.formatBuyPriceTimesNumber + "".PadRight(30);
+        //        //childNode.Text = column1 + column2 + column3;
+
+
+        //        rootNode.Nodes.Add(childNode);
+
+        //    }
+        //}
+
+
+
+
+        void PopulateTreeView(TreeView treeViewRecipe, Recipe recipe)
         {
-            // remplissage de la treeview
-            TreeNode rootNode = new TreeNode("");
-            rootNode.Text = recipe.recipe.item.name;
-            treeViewRecipe.Nodes.Add(rootNode);
+            TreeNode treeNode = new TreeNode(recipe.Item.Name);
+            treeViewRecipe.Nodes.Add(treeNode);
+            recipeDictionary.Add(recipe.Item.Name, recipe);
 
-            foreach (var Item in recipe.recipe.ingredients)
+            foreach (Recipe ingredient in recipe.Ingredients)
             {
-                TreeNode childNode = new TreeNode("");
-                int quantity;
-                if (Item.item.amount != 0)
-                {
-                    quantity = Item.number / Item.item.amount;
-                }
-                else
-                {
-                    quantity = Item.number;
-                }
+                TreeNode childNode = new TreeNode(ingredient.Item.Name);
+                treeNode.Nodes.Add(childNode);
+                recipeDictionary.Add(ingredient.Item.Name, ingredient);
 
-                childNode.Text = Item.item.name;
+                //string js = await SendWebRequestForJson(apiUrlPrefix + ingredient.Id);
 
-                //childNode.Text = String.Format("{0} \t\t\t {1} \t\t\t {2}", Item.item.name + " ", " Quantité : " + quantity , " buy price : " + Item.formatBuyPriceTimesNumber);
-                //string column1 = Item.item.name + "".PadRight(30);
-                //string column2 = "Quantité : " + quantity +"".PadRight(30);
-                //string column3 = "Buy price : " + Item.formatBuyPriceTimesNumber + "".PadRight(30);
-                //childNode.Text = column1 + column2 + column3;
+                //// test json to class : ok
+                //CrossoutDb tempRecipe = CrossoutDb.FromJson(js);
 
-
-                rootNode.Nodes.Add(childNode);
-
+                ////PopulateTreeView(treeViewRecipe, actualRecipe.Recipe);
+                //PopulateTreeView(childNode, tempRecipe.Recipe);
             }
+        }
+
+
+        // populate the ListBox
+
+        void PopulateListBox(ListBox listBoxRecipe, Recipe recipe)
+
+        {
+            listBoxRecipe.Items.Clear();
+            foreach (Recipe ingredient in recipe.Ingredients)
+            {
+                listBoxRecipe.Items.Add(new ListViewItem(new[] { ingredient.Item.Name, ingredient.Item.FormatBuyPrice, ingredient.Item.FormatCraftingSellSum }));
+            }
+        }
+
+
+        // handle TreeView node expansion and collapse
+
+        void treeViewRecipe_AfterExpand(object sender, TreeViewEventArgs e)
+
+        {
+
+            Recipe recipe = GetRecipeFromTreeNode(e.Node);
+
+            PopulateListBox(listBoxRecipe, recipe);
+
+        }
+
+
+        void treeViewRecipe_AfterCollapse(object sender, TreeViewEventArgs e)
+
+        {
+
+            listBoxRecipe.Items.Clear();
+
+        }
+
+
+        // helper method to get the Recipe instance from a TreeNode
+
+        Recipe GetRecipeFromTreeNode(TreeNode treeNode)
+
+        {
+
+            // implement your logic to get the Recipe instance from the TreeNode
+
+            // for example, you can use a Dictionary to store the Recipe instances
+
+            // and retrieve them by the TreeNode's Text property
+
+            //Dictionary<string, Recipe> recipeDictionary = new Dictionary<string, Recipe>(); // got pushed into a global dictionary at beguining of code
+
+            //...
+
+            return recipeDictionary[treeNode.Text];
+
         }
 
         //---------- fonction de test sur les classes ----------//
@@ -294,53 +346,19 @@ namespace CroussoutDBPlus
             return js;
         }
 
+        //---------- fonction de syncro TreeviewRecipe et ListView ----------//
 
 
 
-
-
-
-
-
-
-        //public Recipe ParseClassRecipe ( string js )
+        //public class TreeItem
         //{
-        //    Recipe rec;
-        //    dynamic data = JsonConvert.DeserializeObject<dynamic>(js);
-        //    rec.sumBuy = data.recipe.sumBuy;
-        //    rec.sumSell = data.recipe.sumSell;
-        //    rec.item.id = data.recipe.id;
-        //    rec.item.name = data.recipe.item.name;
-
-
-        //    return rec;
-
-        //}
-
-        //private string jsonToString (string)
-        //{
-        //    //using (StringReader sr = new StringReader(json)) ;
-
-        //    //using (JsonTextReader reader = new JsonTextReader(sr)) ;
-        //    JsonTextReader reader = new JsonTextReader(new StringReader(i.JSON));
-        //    while (reader.Read())
+        //    public string Text { get; set; }
+        //    public List<TreeItem> Children { get; set; }
+        //    public TreeItem(string text)
         //    {
-        //        if (reader.Value != null)
-        //        {
-        //            //Console.WriteLine("Token: {0}, Value: {1}", reader.TokenType, reader.Value);
-        //            listBoxItemRecipe.Items.Add(reader.TokenType);
-        //            listBoxItemRecipe.Items.Add(reader.Value);
-
-        //        }
-        //        else
-        //        {
-        //            //Console.WriteLine("Token: {0}", reader.TokenType);
-        //            //listBoxItemRecipe.Items.Add(reader.TokenType);
-        //        }
+        //        Text = text;
+        //        Children = new List<TreeItem>();
         //    }
         //}
-
-
-
     }
 }

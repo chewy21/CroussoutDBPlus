@@ -29,7 +29,6 @@ namespace CroussoutDBPlus
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBoxItemSearch = new System.Windows.Forms.GroupBox();
             this.comboBoxItemName = new System.Windows.Forms.ComboBox();
             this.buttonItemUpdate = new System.Windows.Forms.Button();
@@ -38,9 +37,8 @@ namespace CroussoutDBPlus
             this.labelItemName = new System.Windows.Forms.Label();
             this.treeViewRecipe = new System.Windows.Forms.TreeView();
             this.buttonSaveWeaponList = new System.Windows.Forms.Button();
-            this.treeListViewItemRecipe = new BrightIdeasSoftware.TreeListView();
+            this.listBoxRecipe = new System.Windows.Forms.ListBox();
             this.groupBoxItemSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxItemSearch
@@ -105,7 +103,7 @@ namespace CroussoutDBPlus
             // 
             this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
             this.treeViewRecipe.Name = "treeViewRecipe";
-            this.treeViewRecipe.Size = new System.Drawing.Size(385, 303);
+            this.treeViewRecipe.Size = new System.Drawing.Size(404, 836);
             this.treeViewRecipe.TabIndex = 2;
             // 
             // buttonSaveWeaponList
@@ -118,18 +116,13 @@ namespace CroussoutDBPlus
             this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
             this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
             // 
-            // treeListViewItemRecipe
+            // listBoxRecipe
             // 
-            this.treeListViewItemRecipe.CellEditUseWholeCell = false;
-            this.treeListViewItemRecipe.HideSelection = false;
-            this.treeListViewItemRecipe.Location = new System.Drawing.Point(13, 458);
-            this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
-            this.treeListViewItemRecipe.ShowGroups = false;
-            this.treeListViewItemRecipe.Size = new System.Drawing.Size(1239, 515);
-            this.treeListViewItemRecipe.TabIndex = 5;
-            this.treeListViewItemRecipe.UseCompatibleStateImageBehavior = false;
-            this.treeListViewItemRecipe.View = System.Windows.Forms.View.Details;
-            this.treeListViewItemRecipe.VirtualMode = true;
+            this.listBoxRecipe.FormattingEnabled = true;
+            this.listBoxRecipe.Location = new System.Drawing.Point(424, 131);
+            this.listBoxRecipe.Name = "listBoxRecipe";
+            this.listBoxRecipe.Size = new System.Drawing.Size(828, 836);
+            this.listBoxRecipe.TabIndex = 5;
             // 
             // Form1
             // 
@@ -137,7 +130,7 @@ namespace CroussoutDBPlus
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1264, 985);
-            this.Controls.Add(this.treeListViewItemRecipe);
+            this.Controls.Add(this.listBoxRecipe);
             this.Controls.Add(this.buttonSaveWeaponList);
             this.Controls.Add(this.treeViewRecipe);
             this.Controls.Add(this.groupBoxItemSearch);
@@ -147,7 +140,6 @@ namespace CroussoutDBPlus
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxItemSearch.ResumeLayout(false);
             this.groupBoxItemSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -162,7 +154,7 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.TreeView treeViewRecipe;
         private System.Windows.Forms.ComboBox comboBoxItemName;
         private System.Windows.Forms.Button buttonSaveWeaponList;
-        private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
+        private System.Windows.Forms.ListBox listBoxRecipe;
     }
 }
 
