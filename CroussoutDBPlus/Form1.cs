@@ -66,11 +66,12 @@ namespace CroussoutDBPlus
 
             // initialize the TreeView and ListBox
 
-
-
+            
+            /*
             treeViewRecipe.AfterExpand += treeViewRecipe_AfterExpand;
 
             treeViewRecipe.AfterCollapse += treeViewRecipe_AfterCollapse;
+            */
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -313,6 +314,65 @@ namespace CroussoutDBPlus
 
         }
 
+        private async Task<FullRecipeClasse> PopulateFullRecipeClasse(FullRecipeClasse crossoutDb)
+        {
+            foreach (Recipe recipe in crossoutDb.Recipe.Ingredients)
+            {
+                string js = await SendWebRequestForJson(apiUrlPrefix + recipe.Item.Id);
+                FullRecipeClasse tempDb = FullRecipeClasse.FromJson(js);
+
+                //Console.WriteLine("####################################");
+                //Console.WriteLine("lvl : " + lvl);
+                //Console.WriteLine("tempDb.Recipe.Item.Id : " + tempDb.Recipe.Item.Id);
+                //Console.WriteLine("tempDb.Recipe.Item.Id : " + tempDb.Recipe.Item.Name);
+                //Console.WriteLine("tempDb.Recipe.Item.Id : " + tempDb.Recipe.Item.RarityName);
+                //Console.WriteLine("tempDb.Recipe.Item.Craftable : " + tempDb.Recipe.Item.Craftable);
+                if (tempDb.Recipe.Item.Craftable == 1 && tempDb.Recipe.Ingredients != null)
+                {
+                    
+                    //Console.WriteLine("_______________________ beguining of recursive jump__________________________________________");
+                    //Console.WriteLine("lvl : " + lvl);
+                    //Console.WriteLine("success " + tempDb.Recipe.Item.Name);
+                    //Console.WriteLine("success " + tempDb.Recipe.Item.RarityName);
+
+                    // assigner les nouveau item de tempDb dans crossoutDb
+                    recipe.Item = tempDb.Recipe.Item;
+                    recipe.Ingredients = tempDb.Recipe.Ingredients;
+
+                    // Recursively populate sub-recipes
+                    //recipe.Ingredients = await PopulateFullRecipeClasse(recipe.Ingredients);
+                    //Console.WriteLine("number of element in recipe.Ingredients.Count : " + recipe.Ingredients.Count);
+                    int nb = recipe.Ingredients.Count;
+                    for (int i = 0; i < nb; i++)
+                    {
+                        //Console.WriteLine("element " + i + " recipe.Ingredients[i].Item.Name : " + recipe.Ingredients[i].Item.Name);
+                    }
+                    lvl += 1;
+                    tempDb = await PopulateFullRecipeClasse(tempDb); // <------ todo !
+                    lvl -= 1;
+                }
+            }
+            return crossoutDb;
+        }
+
+        //---------- fonction remplissage de treeNode recursive ----------//
+        void AddChildNodes(TreeNode parentNode, Recipe value)
+        {
+            foreach (Recipe recipe in value.Ingredients)
+            {
+                var node = new TreeNode(recipe.Item.Name);
+                parentNode.Nodes.Add(node);
+                if (value != null)
+                {
+                        var childValue = recipe;
+                        if (childValue != null)
+                        {
+                            AddChildNodes(node, childValue);
+                        }
+                }
+            }
+        }
+
         //---------- fonction de selection de la combobox ----------//
         private void comboBoxItemName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -391,37 +451,21 @@ namespace CroussoutDBPlus
         //---------- fonction de récupération de json sur api Cdb ----------//
 
         private async Task<string> SendWebRequestForJson(string url)
-
         {
-
             using (WebClient client = new WebClient())
-
             {
-
                 try
-
                 {
-
                     string json = await client.DownloadStringTaskAsync(new Uri(url));
-
                     return json;
-
                 }
-
                 catch (WebException ex)
-
                 {
-
-                    // Handle the error here. For example, you can return an empty string or log the error.
-
                     Console.WriteLine("Error downloading JSON from {0}: {1}", url, ex.Message);
-
+                    //throw new ApiException("Failed to download JSON from API", ex);
                     return "";
-
                 }
-
             }
-
         }
 
         //---------- fonction de récupération d'icone d'item sur cdb ----------//
@@ -432,7 +476,17 @@ namespace CroussoutDBPlus
             using (WebClient client = new WebClient())
             {
                 // Download the image from the URL as a byte array
-                byte[] imageData = client.DownloadData(url);
+                byte[] imageData;
+                try
+                {
+                    imageData = client.DownloadData(url);
+                }
+                catch (WebException ex)
+                {
+                    Console.WriteLine("Error downloading image from {0}: {1}", url, ex.Message);
+                    return null;
+                }
+
                 // Create a new MemoryStream object from the byte array
                 using (MemoryStream ms = new MemoryStream(imageData))
                 {
@@ -440,10 +494,8 @@ namespace CroussoutDBPlus
                     Image image = Image.FromStream(ms);
 
                     return image;
-
                 }
             }
-
         }
 
         //---------- fonction de sauvegarde de weaponList en json ----------//
