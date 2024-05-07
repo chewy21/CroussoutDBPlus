@@ -95,10 +95,14 @@ namespace CroussoutDBPlus
             // 
             // treeViewRecipe
             // 
+            this.treeViewRecipe.BackColor = System.Drawing.Color.Gainsboro;
+            this.treeViewRecipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
             this.treeViewRecipe.Name = "treeViewRecipe";
-            this.treeViewRecipe.Size = new System.Drawing.Size(404, 836);
+            this.treeViewRecipe.Size = new System.Drawing.Size(404, 840);
             this.treeViewRecipe.TabIndex = 2;
+            this.treeViewRecipe.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRecipe_AfterCollapse);
+            this.treeViewRecipe.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRecipe_AfterExpand);
             // 
             // buttonSaveWeaponList
             // 
@@ -110,7 +114,7 @@ namespace CroussoutDBPlus
             this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
             this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
             // 
-            // listBoxRecipe
+            // listViewRecipe
             // 
             this.treeListViewItemRecipe.AlternateRowBackColor = System.Drawing.Color.WhiteSmoke;
             this.treeListViewItemRecipe.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -222,6 +226,11 @@ namespace CroussoutDBPlus
             this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        private void TreeViewRecipe_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
