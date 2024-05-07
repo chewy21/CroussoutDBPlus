@@ -17,6 +17,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Xml.Linq;
+using System.Drawing.Drawing2D;
+using System.Windows.Data;
 
 namespace CroussoutDBPlus
 {
@@ -34,10 +36,6 @@ namespace CroussoutDBPlus
 
         //test sur sauvegarde de la liste d'armes
         //public weaponList = new WeaponList();
-
-        long lvl = 0;
-
-        Dictionary<string, Recipe> recipeDictionary = new Dictionary<string, Recipe>();
 
 
         // init de la classe weaponlist
@@ -59,17 +57,19 @@ namespace CroussoutDBPlus
         {
             InitializeComponent();
             // In your form's constructor or Load event handler, wire up the event handlers.
+            List<User> items = new List<User>();
+            items.Add(new User() { Name = "John Doe", Age = 42, Sex = SexType.Male });
+            items.Add(new User() { Name = "Jane Doe", Age = 39, Sex = SexType.Female });
+            items.Add(new User() { Name = "Sammy Doe", Age = 13, Sex = SexType.Male });
+
+            listViewRecipe.View = View.Details;
+
+            listViewRecipe.Columns.Add("Id", 100);
+            listViewRecipe.Columns.Add("Name", 150);
+            //listViewRecipe.Columns.Add("Craftable", 100);
 
 
 
-            // initialize the TreeView and ListBox
-
-            
-            /*
-            treeViewRecipe.AfterExpand += treeViewRecipe_AfterExpand;
-
-            treeViewRecipe.AfterCollapse += treeViewRecipe_AfterCollapse;
-            */
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -90,7 +90,23 @@ namespace CroussoutDBPlus
 
 
 
+
+
         }
+
+        public enum SexType { Male, Female };
+
+        public class User
+        {
+            public string Name { get; set; }
+
+            public int Age { get; set; }
+
+            public string Mail { get; set; }
+
+            public SexType Sex { get; set; }
+        }
+
 
         //__________//                                                  //__________//
         //__________//         FCT INTERFACES                           //__________//
@@ -107,7 +123,6 @@ namespace CroussoutDBPlus
             // telechargement du json de l'item
             string json = await SendWebRequestForJson(apiUrlPrefix + id);
             // chargement du json dans data
-            //dynamic actualRecipe = JsonConvert.DeserializeObject<dynamic>(json);
 
             // test json to class : ok
             FullRecipeClasse crossoutDb = FullRecipeClasse.FromJson(json);
@@ -121,14 +136,17 @@ namespace CroussoutDBPlus
 
             // Add a root node for the CrossoutDb object
             var crossoutDbNode = new TreeNode(crossoutDb.Recipe.Item.Name);
-            
 
-            //crossoutDb.Recipe.Item.Name;
+
+
+            //PopulateTreeView(crossoutDb);
+
 
             // Add child nodes for the properties of the CrossoutDb object
             foreach (Recipe recipe in crossoutDb.Recipe.Ingredients)
             {
                 var node = new TreeNode(recipe.Item.Name);
+                node.Tag = recipe;
                 crossoutDbNode.Nodes.Add(node);
                 if (recipe.Ingredients != null)
                 {
@@ -140,32 +158,29 @@ namespace CroussoutDBPlus
                 }
             }
 
+            crossoutDbNode.Tag = crossoutDb;
+
+
+
             nodes.Add(crossoutDbNode);
             // put node into treeViewRecipe
             treeViewRecipe.Nodes.AddRange(nodes.ToArray());
 
+
+            listViewRecipe.Items.Clear();
+
+            ///*            foreach (Recipe recipe in crossoutDb.Recipe.Ingredients)
+            //            {
+            //                ListViewItem item = new ListViewItem(recipe.Item.Name);
+            //                item.SubItems.Add(recipe.Item.Craftable.ToString());
+            //                item.SubItems.Add(recipe.Item.Id.ToString());
+            //                listViewRecipe.Items.Add(item);
+            //            }*/
+
+
             // download the png of the item
             //Image icon = await SendWebRequestForPng(ImageUrlPrefix + id + ".png");
 
-            /*
-
-            TreeNode parentNode = new TreeNode("Parent");
-
-            TreeNode childNode1 = new TreeNode("Child 1");
-            parentNode.Nodes.Add(childNode1);
-
-            TreeNode childNode2 = new TreeNode("Child 2");
-            parentNode.Nodes.Add(childNode2);
-
-            TreeNode subChildNode1 = new TreeNode("Sub-Child 1");
-            childNode1.Nodes.Add(subChildNode1);
-
-            TreeNode subChildNode2 = new TreeNode("Sub-Child 2");
-            childNode1.Nodes.Add(subChildNode2);
-
-            treeViewRecipe.Nodes.Add(parentNode);
-
-            */
 
         }
 
@@ -175,36 +190,14 @@ namespace CroussoutDBPlus
             {
                 string js = await SendWebRequestForJson(apiUrlPrefix + recipe.Item.Id);
                 FullRecipeClasse tempDb = FullRecipeClasse.FromJson(js);
-
-                //Console.WriteLine("####################################");
-                //Console.WriteLine("lvl : " + lvl);
-                //Console.WriteLine("tempDb.Recipe.Item.Id : " + tempDb.Recipe.Item.Id);
-                //Console.WriteLine("tempDb.Recipe.Item.Id : " + tempDb.Recipe.Item.Name);
-                //Console.WriteLine("tempDb.Recipe.Item.Id : " + tempDb.Recipe.Item.RarityName);
-                //Console.WriteLine("tempDb.Recipe.Item.Craftable : " + tempDb.Recipe.Item.Craftable);
                 if (tempDb.Recipe.Item.Craftable == 1 && tempDb.Recipe.Ingredients != null)
                 {
-                    
-                    //Console.WriteLine("_______________________ beguining of recursive jump__________________________________________");
-                    //Console.WriteLine("lvl : " + lvl);
-                    //Console.WriteLine("success " + tempDb.Recipe.Item.Name);
-                    //Console.WriteLine("success " + tempDb.Recipe.Item.RarityName);
-
                     // assigner les nouveau item de tempDb dans crossoutDb
                     recipe.Item = tempDb.Recipe.Item;
                     recipe.Ingredients = tempDb.Recipe.Ingredients;
 
                     // Recursively populate sub-recipes
-                    //recipe.Ingredients = await PopulateFullRecipeClasse(recipe.Ingredients);
-                    //Console.WriteLine("number of element in recipe.Ingredients.Count : " + recipe.Ingredients.Count);
-                    int nb = recipe.Ingredients.Count;
-                    for (int i = 0; i < nb; i++)
-                    {
-                        //Console.WriteLine("element " + i + " recipe.Ingredients[i].Item.Name : " + recipe.Ingredients[i].Item.Name);
-                    }
-                    lvl += 1;
                     tempDb = await PopulateFullRecipeClasse(tempDb); // <------ todo !
-                    lvl -= 1;
                 }
             }
             return crossoutDb;
@@ -216,6 +209,7 @@ namespace CroussoutDBPlus
             foreach (Recipe recipe in value.Ingredients)
             {
                 var node = new TreeNode(recipe.Item.Name);
+                node.Tag = recipe;
                 parentNode.Nodes.Add(node);
                 if (value != null)
                 {
@@ -227,6 +221,30 @@ namespace CroussoutDBPlus
                 }
             }
         }
+
+/*        private void PopulateTreeView(FullRecipeClasse crossoutDb)
+        {
+            // Create a new TreeNode object for the CrossoutDb object
+            TreeNode crossoutDbNode = new TreeNode(crossoutDb.Recipe.Item.Name);
+            crossoutDbNode.Tag = crossoutDb;
+
+            // Add child nodes for the properties of the CrossoutDb object
+            foreach (Recipe recipe in crossoutDb.Recipe.Ingredients)
+            {
+                TreeNode node = new TreeNode(recipe.Item.Name);
+                node.Tag = recipe;
+                crossoutDbNode.Nodes.Add(node);
+
+                if (recipe.Ingredients != null)
+                {
+                    PopulateTreeView(recipe);
+                }
+            }
+
+            // Add the CrossoutDb node to the TreeView
+            treeViewRecipe.Nodes.Add(crossoutDbNode);
+        }*/
+
 
         //---------- fonction de selection de la combobox ----------//
         private void comboBoxItemName_SelectedIndexChanged(object sender, EventArgs e)
@@ -306,65 +324,6 @@ namespace CroussoutDBPlus
             }
         }
 
-
-        
-       
-
-        // populate the ListBox
-
-        void PopulateListBox(ListBox listBoxRecipe, Recipe recipe)
-
-        {
-            listBoxRecipe.Items.Clear();
-            foreach (Recipe ingredient in recipe.Ingredients)
-            {
-                listBoxRecipe.Items.Add(new ListViewItem(new[] { ingredient.Item.Name, ingredient.Item.FormatBuyPrice, ingredient.Item.FormatCraftingSellSum }));
-            }
-        }
-
-
-        // handle TreeView node expansion and collapse
-        
-        void treeViewRecipe_AfterExpand(object sender, TreeViewEventArgs e)
-
-        {
-
-            Recipe recipe = GetRecipeFromTreeNode(e.Node);//---------- fonction de selection de la combobox ----------//
-
-            PopulateListBox(listBoxRecipe, recipe);
-
-        }
-
-
-        void treeViewRecipe_AfterCollapse(object sender, TreeViewEventArgs e)
-
-        {
-
-            listBoxRecipe.Items.Clear();
-
-        }
-
-
-        // helper method to get the Recipe instance from a TreeNode
-
-        Recipe GetRecipeFromTreeNode(TreeNode treeNode)
-        {
-            // Print out the keys and values of the recipeDictionary
-            Console.WriteLine("Recipe dictionary when expanding tree view node:");
-            foreach (KeyValuePair<string, Recipe> entry in recipeDictionary)
-            {
-                Console.WriteLine("Key: {0}, Value: {1}", entry.Key, entry.Value);
-            }
-
-            string key = treeNode.Text;
-            if (recipeDictionary.TryGetValue(key, out Recipe recipe))
-            {
-                return recipe;
-            }
-
-            return null;
-        }
-
         
         //---------- fonction de sauvegarde de weaponList en json ----------//
 
@@ -392,5 +351,84 @@ namespace CroussoutDBPlus
             return js;
         }
 
+
+
+
+
+
+        //__________//                                                  //__________//
+        //__________//         ESSAIS LISTVIEW                          //__________//
+        //__________//                                                  //__________//
+        private void treeViewRecipe_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            Console.WriteLine("expand");
+            Console.WriteLine(e.Node.Tag);
+
+            // Get the selected node
+            TreeNode selectedNode = e.Node;
+
+            // Get the corresponding recipe object
+            object recipe = selectedNode.Tag;
+
+            // Populate the listViewRecipe with the ingredients of the recipe
+
+            // Get the type of the recipe object
+            Type recipeType = recipe.GetType();
+
+            // Check if the recipe object is of type Recipe
+            if (recipeType == typeof(FullRecipeClasse))
+            {
+                // Cast the recipe object to FullRecipeClasse
+                FullRecipeClasse recipeObj = (FullRecipeClasse)recipe;
+                Console.WriteLine(recipeObj.Recipe.Item.Name);
+
+                foreach (Recipe ingredient in recipeObj.Recipe.Ingredients)
+                {
+                    ListViewItem item = new ListViewItem(ingredient.Item.Name);
+                    item.SubItems.Add(ingredient.Item.Craftable.ToString());
+                    item.SubItems.Add(ingredient.Item.Id.ToString());
+                    listViewRecipe.Items.Add(item);
+                }
+
+
+            }
+            else if (recipeType == typeof(Recipe))
+            {
+                // Cast the recipe object to Recipe
+                Recipe recipeObj = (Recipe)recipe;
+                Console.WriteLine(recipeObj.Item.Name);
+
+                foreach (Recipe ingredient in recipeObj.Ingredients)
+                {
+                    ListViewItem item = new ListViewItem(ingredient.Item.Name);
+                    item.SubItems.Add(ingredient.Item.Craftable.ToString());
+                    item.SubItems.Add(ingredient.Item.Id.ToString());
+                    listViewRecipe.Items.Add(item);
+                }
+
+            }
+
+
+/*            foreach (Recipe ingredient in tempDb.Recipe.Ingredients)
+            {
+                ListViewItem item = new ListViewItem(ingredient.Item.Name);
+                item.SubItems.Add(ingredient.Item.Craftable.ToString());
+                item.SubItems.Add(ingredient.Item.Id.ToString());
+                listViewRecipe.Items.Add(item);
+            }*/
+        }
+
+        private void treeViewRecipe_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+            Console.WriteLine("collapse");
+            // Clear the listViewRecipe when the node is collapsed
+            listViewRecipe.Items.Clear();
+        }
+
+
+        private void listViewRecipe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

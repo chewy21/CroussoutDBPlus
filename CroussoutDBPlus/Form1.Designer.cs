@@ -29,6 +29,7 @@ namespace CroussoutDBPlus
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.groupBoxItemSearch = new System.Windows.Forms.GroupBox();
             this.comboBoxItemName = new System.Windows.Forms.ComboBox();
             this.buttonItemUpdate = new System.Windows.Forms.Button();
@@ -37,7 +38,7 @@ namespace CroussoutDBPlus
             this.labelItemName = new System.Windows.Forms.Label();
             this.treeViewRecipe = new System.Windows.Forms.TreeView();
             this.buttonSaveWeaponList = new System.Windows.Forms.Button();
-            this.listBoxRecipe = new System.Windows.Forms.ListBox();
+            this.listViewRecipe = new System.Windows.Forms.ListView();
             this.groupBoxItemSearch.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,10 +102,14 @@ namespace CroussoutDBPlus
             // 
             // treeViewRecipe
             // 
+            this.treeViewRecipe.BackColor = System.Drawing.Color.Gainsboro;
+            this.treeViewRecipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
             this.treeViewRecipe.Name = "treeViewRecipe";
-            this.treeViewRecipe.Size = new System.Drawing.Size(404, 836);
+            this.treeViewRecipe.Size = new System.Drawing.Size(404, 840);
             this.treeViewRecipe.TabIndex = 2;
+            this.treeViewRecipe.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRecipe_AfterCollapse);
+            this.treeViewRecipe.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRecipe_AfterExpand);
             // 
             // buttonSaveWeaponList
             // 
@@ -116,13 +121,19 @@ namespace CroussoutDBPlus
             this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
             this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
             // 
-            // listBoxRecipe
+            // listViewRecipe
             // 
-            this.listBoxRecipe.FormattingEnabled = true;
-            this.listBoxRecipe.Location = new System.Drawing.Point(424, 131);
-            this.listBoxRecipe.Name = "listBoxRecipe";
-            this.listBoxRecipe.Size = new System.Drawing.Size(828, 836);
-            this.listBoxRecipe.TabIndex = 5;
+            this.listViewRecipe.GridLines = true;
+            this.listViewRecipe.HideSelection = false;
+            this.listViewRecipe.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listViewRecipe.LabelEdit = true;
+            this.listViewRecipe.Location = new System.Drawing.Point(424, 131);
+            this.listViewRecipe.Name = "listViewRecipe";
+            this.listViewRecipe.Size = new System.Drawing.Size(828, 840);
+            this.listViewRecipe.TabIndex = 5;
+            this.listViewRecipe.UseCompatibleStateImageBehavior = false;
+            this.listViewRecipe.SelectedIndexChanged += new System.EventHandler(this.listViewRecipe_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -130,7 +141,7 @@ namespace CroussoutDBPlus
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1264, 985);
-            this.Controls.Add(this.listBoxRecipe);
+            this.Controls.Add(this.listViewRecipe);
             this.Controls.Add(this.buttonSaveWeaponList);
             this.Controls.Add(this.treeViewRecipe);
             this.Controls.Add(this.groupBoxItemSearch);
@@ -144,6 +155,11 @@ namespace CroussoutDBPlus
 
         }
 
+        private void TreeViewRecipe_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxItemSearch;
@@ -154,7 +170,7 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.TreeView treeViewRecipe;
         private System.Windows.Forms.ComboBox comboBoxItemName;
         private System.Windows.Forms.Button buttonSaveWeaponList;
-        private System.Windows.Forms.ListBox listBoxRecipe;
+        private System.Windows.Forms.ListView listViewRecipe;
     }
 }
 
