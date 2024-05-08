@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Policy;
 
 namespace CroussoutDBPlus
 {
@@ -83,12 +84,17 @@ namespace CroussoutDBPlus
             // set columns of treelistview
             treeListViewItemRecipe.Columns.Add(new OLVColumn("Nom", "Name"));
             treeListViewItemRecipe.Columns.Add(new OLVColumn("Identificateur", "Id"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Icone", "imageIndex"));
-            //treeListViewItemRecipe.Row
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Buy Price", "formatBuyPrice"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Crafting Buy Sum", "formatCraftingBuySum"));
+            //treeListViewItemRecipe.Columns.Add(new OLVColumn("Icone", "imageIndex"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Quantitée", "Quantity"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Offre d'achat haute", "FormatBuyPrice"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Offre d'achat basse", "FormatSellPrice"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Achat val. haute craft", "FormatCraftingBuySum"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("Achat val. basse craft", "FormatCraftingSellSum"));
+            treeListViewItemRecipe.Columns.Add(new OLVColumn("craft", "BuyCraft"));
             treeListViewItemRecipe.AutoResizeColumns();
-             //treeListViewItemRecipe.Columns[0];
+            //treeListViewItemRecipe.Columns[0];
+            //new OLVColumn("")
+            Console.WriteLine("Column header : " + treeListViewItemRecipe.Columns[0]);
         }
 
         //__________//                                                  //__________//
@@ -122,14 +128,18 @@ namespace CroussoutDBPlus
             string imageIndex = "909";
 
             treeListViewItemRecipe.SmallImageList = imageList;
-            //treeListViewItemRecipe.Columns[1].ImageIndex = 0;
+            //treeListViewItemRecipe.Columns.
+            treeListViewItemRecipe.Columns[1].ImageIndex = 0;
             //treeListViewItemRecipe.SmallImageList.
+            
+            //var parent1 = new Node(actualRecipe.Recipe.Item.Id, imageIndex, actualRecipe.Recipe.Item.Name,actualRecipe.Recipe.Number, actualRecipe.Recipe.Item.FormatBuyPrice, actualRecipe.Recipe.Item.FormatSellPrice, actualRecipe.Recipe.Item.FormatCraftingBuySum, actualRecipe.Recipe.Item.FormatCraftingSellSum) ;
+            var parent1 = new Node(actualRecipe.Recipe) ;
+            
+            AddChildNodes(parent1,actualRecipe.Recipe);
 
-            var parent1 = new Node(actualRecipe.Recipe.Item.Id, imageIndex, actualRecipe.Recipe.Item.Name, actualRecipe.Recipe.Item.FormatBuyPrice, actualRecipe.Recipe.Item.FormatCraftingBuySum) ;
-
-            foreach (var recipe in actualRecipe.Recipe.Ingredients)
+            /*foreach (var recipe in actualRecipe.Recipe.Ingredients)
             {
-                var node = new Node(recipe.Item.Id, imageIndex, recipe.Item.Name, recipe.FormatBuyPriceTimesNumber, "");
+                var node = new Node(recipe.Item.Id, imageIndex, recipe.Item.Name, recipe.Number, recipe.Item.FormatBuyPrice, recipe.Item.FormatSellPrice, recipe.Item.FormatCraftingBuySum, recipe.Item.FormatCraftingSellSum);
                 parent1.Children.Add(node) ; //, Item.formatBuyPrice, Item.FormatCraftingBuySum);
                 lblProgress.Text = $"Items added: {count}";
                 if(recipe.Ingredients != null)
@@ -141,7 +151,7 @@ namespace CroussoutDBPlus
                     }
                 }
 
-            }
+            }*/
 
             // Assign parent1 to listOfItem
             listOfItem = new List<Node> { parent1 };
@@ -149,6 +159,8 @@ namespace CroussoutDBPlus
             treeListViewItemRecipe.Roots = listOfItem;
             // Resize column width auto
             treeListViewItemRecipe.AutoResizeColumns();
+
+
 
 
             // Add multiple new lines to the TreeListView
@@ -187,8 +199,17 @@ namespace CroussoutDBPlus
 
         private void buttonSaveWeaponList_Click(object sender, EventArgs e)
         {
-            string json = JsonConvert.SerializeObject(weaponList, Formatting.Indented);
-            SaveWeaponListJsonToFile(json);
+            //string json = JsonConvert.SerializeObject(weaponList, Formatting.Indented);
+            //SaveWeaponListJsonToFile(json);
+            SearchDirectionHint directionHint = new SearchDirectionHint();
+            if(treeListViewItemRecipe.FindMatchingRow("Punisher", 0, directionHint) > 0)
+            {
+                //if (treeListViewItemRecipe.Columns[7].Equals(true))
+                //{
+                    Console.WriteLine("succes !!");
+                //}
+            }
+
         }
 
         //__________//                                                  //__________//
@@ -228,7 +249,8 @@ namespace CroussoutDBPlus
             foreach (Recipe recipe in value.Ingredients)
             {
 
-                var node = new Node(recipe.Item.Id, "2", recipe.Item.Name, recipe.FormatBuyPriceTimesNumber, "");
+                //var node = new Node(recipe.Item.Id, "imageIndex", recipe.Item.Name, recipe.Number, recipe.Item.FormatBuyPrice, recipe.Item.FormatSellPrice, recipe.Item.FormatCraftingBuySum, recipe.Item.FormatCraftingSellSum);
+                var node = new Node(recipe);
                 //node.Tag = recipe;
                 parentNode.Children.Add(node);
                 if (value != null)
