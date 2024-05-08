@@ -29,6 +29,7 @@ namespace CroussoutDBPlus
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBoxItemSearch = new System.Windows.Forms.GroupBox();
             this.buttonSaveWeaponList = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@ namespace CroussoutDBPlus
             this.labelItemID = new System.Windows.Forms.Label();
             this.labelItemName = new System.Windows.Forms.Label();
             this.treeListViewItemRecipe = new BrightIdeasSoftware.TreeListView();
+            this.hotItemStyle1 = new BrightIdeasSoftware.HotItemStyle();
             this.groupBoxItemSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.SuspendLayout();
@@ -136,6 +138,7 @@ namespace CroussoutDBPlus
             this.treeListViewItemRecipe.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.treeListViewItemRecipe.CellEditUseWholeCell = false;
             this.treeListViewItemRecipe.HideSelection = false;
+            this.treeListViewItemRecipe.HotItemStyle = this.hotItemStyle1;
             this.treeListViewItemRecipe.Location = new System.Drawing.Point(5, 177);
             this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
             this.treeListViewItemRecipe.OverlayImage.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
@@ -145,10 +148,19 @@ namespace CroussoutDBPlus
             this.treeListViewItemRecipe.Size = new System.Drawing.Size(1254, 803);
             this.treeListViewItemRecipe.TabIndex = 5;
             this.treeListViewItemRecipe.UseAlternatingBackColors = true;
+            this.treeListViewItemRecipe.UseCellFormatEvents = true;
             this.treeListViewItemRecipe.UseCompatibleStateImageBehavior = false;
+            this.treeListViewItemRecipe.UseHotItem = true;
             this.treeListViewItemRecipe.View = System.Windows.Forms.View.Details;
             this.treeListViewItemRecipe.VirtualMode = true;
             this.treeListViewItemRecipe.Expanded += new System.EventHandler<BrightIdeasSoftware.TreeBranchExpandedEventArgs>(this.TreeListViewItemRecipe_Expand);
+            this.treeListViewItemRecipe.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.treeListViewRecipe_FormatCell);
+            this.treeListViewItemRecipe.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.treeListViewRecipe_FormatRow);
+            // 
+            // hotItemStyle1
+            // 
+            this.hotItemStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.hotItemStyle1.FontStyle = System.Drawing.FontStyle.Bold;
             // 
             // Form1
             // 
@@ -184,6 +196,7 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.Button buttonSaveWeaponList;
         private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
         private System.Windows.Forms.Label lblProgress;
+        private BrightIdeasSoftware.HotItemStyle hotItemStyle1;
     }
 }
 

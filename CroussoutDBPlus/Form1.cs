@@ -49,6 +49,11 @@ namespace CroussoutDBPlus
 
         //---------- fonction d'init de l'interface graphique ----------//
 
+
+
+        //__________//                                                  //__________//
+        //__________//         INIT Functions                           //__________//
+        //__________//                                                  //__________//
         public Form1()
         {
             InitializeComponent();
@@ -80,21 +85,6 @@ namespace CroussoutDBPlus
             treeListViewItemRecipe.ChildrenGetter = x => (x as Node).Children;
 
 
-
-            // set columns of treelistview
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Nom", "Name"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Identificateur", "Id"));
-            //treeListViewItemRecipe.Columns.Add(new OLVColumn("Icone", "imageIndex"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Quantitée", "Quantity"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Offre d'achat haute", "FormatBuyPrice"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Offre d'achat basse", "FormatSellPrice"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Achat val. haute craft", "FormatCraftingBuySum"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Achat val. basse craft", "FormatCraftingSellSum"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("craft", "BuyCraft"));
-            treeListViewItemRecipe.AutoResizeColumns();
-            //treeListViewItemRecipe.Columns[0];
-            //new OLVColumn("")
-            Console.WriteLine("Column header : " + treeListViewItemRecipe.Columns[0]);
         }
 
         //__________//                                                  //__________//
@@ -129,7 +119,7 @@ namespace CroussoutDBPlus
 
             treeListViewItemRecipe.SmallImageList = imageList;
             //treeListViewItemRecipe.Columns.
-            treeListViewItemRecipe.Columns[1].ImageIndex = 0;
+            //treeListViewItemRecipe.Columns[1].ImageIndex = 0;
             //treeListViewItemRecipe.SmallImageList.
             
             //var parent1 = new Node(actualRecipe.Recipe.Item.Id, imageIndex, actualRecipe.Recipe.Item.Name,actualRecipe.Recipe.Number, actualRecipe.Recipe.Item.FormatBuyPrice, actualRecipe.Recipe.Item.FormatSellPrice, actualRecipe.Recipe.Item.FormatCraftingBuySum, actualRecipe.Recipe.Item.FormatCraftingSellSum) ;
@@ -137,30 +127,20 @@ namespace CroussoutDBPlus
             
             AddChildNodes(parent1,actualRecipe.Recipe);
 
-            /*foreach (var recipe in actualRecipe.Recipe.Ingredients)
-            {
-                var node = new Node(recipe.Item.Id, imageIndex, recipe.Item.Name, recipe.Number, recipe.Item.FormatBuyPrice, recipe.Item.FormatSellPrice, recipe.Item.FormatCraftingBuySum, recipe.Item.FormatCraftingSellSum);
-                parent1.Children.Add(node) ; //, Item.formatBuyPrice, Item.FormatCraftingBuySum);
-                lblProgress.Text = $"Items added: {count}";
-                if(recipe.Ingredients != null)
-                {
-                    Recipe tempRecipe = recipe;
-                    if(tempRecipe != null)
-                    {
-                        AddChildNodes(node,tempRecipe);
-                    }
-                }
-
-            }*/
 
             // Assign parent1 to listOfItem
             listOfItem = new List<Node> { parent1 };
+            Generator.GenerateColumns(treeListViewItemRecipe, typeof(Node),true);
             // Assign listOfItem to treeListView
             treeListViewItemRecipe.Roots = listOfItem;
+
+            //Generator.GenerateColumns(treeListViewItemRecipe, typeof(Node));
             // Resize column width auto
+
+            //treeListViewItemRecipe.Columns.Contains(image)
             treeListViewItemRecipe.AutoResizeColumns();
 
-
+            
 
 
             // Add multiple new lines to the TreeListView
@@ -345,5 +325,30 @@ namespace CroussoutDBPlus
             //Console.WriteLine($"Node '{e.Item.Name}' expanded.");
         }
 
+        private void treeListViewRecipe_FormatRow(object sender, FormatRowEventArgs e)
+        {
+            Node node = (Node)e.Model;
+            if (node.BuyCraft)
+            {
+                e.Item.BackColor = Color.LightGreen;
+                e.Item.ToolTipText = "craft it !";
+            }
+        }
+
+        private void treeListViewRecipe_FormatCell(object sender, FormatCellEventArgs e)
+        {
+            if (e.ColumnIndex == 9 && false)
+            {
+
+                Node node = (Node)e.Model;
+                if (node.BuyCraft)
+                {
+                    e.Item.BackColor = Color.LightGreen;
+                    //e.Item.Checked = true;
+                    //e.SubItem.ToolTipText = "craft it !";
+                }
+            }
+
+        }
     }
 }
