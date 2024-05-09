@@ -31,8 +31,6 @@ namespace CroussoutDBPlus
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.groupBoxItemSearch = new System.Windows.Forms.GroupBox();
-            this.buttonSaveWeaponList = new System.Windows.Forms.Button();
             this.lblProgress = new System.Windows.Forms.Label();
             this.comboBoxItemName = new System.Windows.Forms.ComboBox();
             this.buttonItemUpdate = new System.Windows.Forms.Button();
@@ -41,112 +39,70 @@ namespace CroussoutDBPlus
             this.labelItemName = new System.Windows.Forms.Label();
             this.treeListViewItemRecipe = new BrightIdeasSoftware.TreeListView();
             this.hotItemStyle1 = new BrightIdeasSoftware.HotItemStyle();
-            this.groupBoxItemSearch.SuspendLayout();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonOptRoute = new System.Windows.Forms.Button();
+            this.buttonExpandAll = new System.Windows.Forms.Button();
+            this.buttonCollapseAll = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBoxItemSearch
-            // 
-            this.groupBoxItemSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxItemSearch.AutoSize = true;
-            this.groupBoxItemSearch.Controls.Add(this.buttonSaveWeaponList);
-            this.groupBoxItemSearch.Controls.Add(this.lblProgress);
-            this.groupBoxItemSearch.Controls.Add(this.comboBoxItemName);
-            this.groupBoxItemSearch.Controls.Add(this.buttonItemUpdate);
-            this.groupBoxItemSearch.Controls.Add(this.textBoxItemID);
-            this.groupBoxItemSearch.Controls.Add(this.labelItemID);
-            this.groupBoxItemSearch.Controls.Add(this.labelItemName);
-            this.groupBoxItemSearch.Location = new System.Drawing.Point(5, 5);
-            this.groupBoxItemSearch.Name = "groupBoxItemSearch";
-            this.groupBoxItemSearch.Size = new System.Drawing.Size(1254, 166);
-            this.groupBoxItemSearch.TabIndex = 0;
-            this.groupBoxItemSearch.TabStop = false;
-            this.groupBoxItemSearch.Text = "Recherche d\'item";
-            // 
-            // buttonSaveWeaponList
-            // 
-            this.buttonSaveWeaponList.Dock = System.Windows.Forms.DockStyle.Right;
-            this.buttonSaveWeaponList.Location = new System.Drawing.Point(1176, 16);
-            this.buttonSaveWeaponList.Name = "buttonSaveWeaponList";
-            this.buttonSaveWeaponList.Size = new System.Drawing.Size(75, 147);
-            this.buttonSaveWeaponList.TabIndex = 4;
-            this.buttonSaveWeaponList.Text = "Save Weapon List";
-            this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
-            this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
             // 
             // lblProgress
             // 
-            this.lblProgress.AutoSize = true;
-            this.lblProgress.Location = new System.Drawing.Point(193, 23);
+            resources.ApplyResources(this.lblProgress, "lblProgress");
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(35, 13);
-            this.lblProgress.TabIndex = 7;
-            this.lblProgress.Text = "label1";
             // 
             // comboBoxItemName
             // 
+            resources.ApplyResources(this.comboBoxItemName, "comboBoxItemName");
             this.comboBoxItemName.FormattingEnabled = true;
-            this.comboBoxItemName.Location = new System.Drawing.Point(66, 20);
             this.comboBoxItemName.Name = "comboBoxItemName";
-            this.comboBoxItemName.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxItemName.TabIndex = 5;
             this.comboBoxItemName.SelectedIndexChanged += new System.EventHandler(this.comboBoxItemName_SelectedIndexChanged);
             // 
             // buttonItemUpdate
             // 
-            this.buttonItemUpdate.Location = new System.Drawing.Point(193, 44);
+            resources.ApplyResources(this.buttonItemUpdate, "buttonItemUpdate");
             this.buttonItemUpdate.Name = "buttonItemUpdate";
-            this.buttonItemUpdate.Size = new System.Drawing.Size(75, 23);
-            this.buttonItemUpdate.TabIndex = 4;
-            this.buttonItemUpdate.Text = "Mettre à jour";
             this.buttonItemUpdate.UseVisualStyleBackColor = true;
             this.buttonItemUpdate.Click += new System.EventHandler(this.buttonItemUpdate_Click);
             // 
             // textBoxItemID
             // 
-            this.textBoxItemID.Location = new System.Drawing.Point(66, 46);
+            resources.ApplyResources(this.textBoxItemID, "textBoxItemID");
             this.textBoxItemID.Name = "textBoxItemID";
-            this.textBoxItemID.Size = new System.Drawing.Size(121, 20);
-            this.textBoxItemID.TabIndex = 3;
             // 
             // labelItemID
             // 
-            this.labelItemID.AutoSize = true;
-            this.labelItemID.Location = new System.Drawing.Point(7, 46);
+            resources.ApplyResources(this.labelItemID, "labelItemID");
             this.labelItemID.Name = "labelItemID";
-            this.labelItemID.Size = new System.Drawing.Size(24, 13);
-            this.labelItemID.TabIndex = 2;
-            this.labelItemID.Text = "ID :";
             // 
             // labelItemName
             // 
-            this.labelItemName.AutoSize = true;
-            this.labelItemName.Location = new System.Drawing.Point(7, 20);
+            resources.ApplyResources(this.labelItemName, "labelItemName");
             this.labelItemName.Name = "labelItemName";
-            this.labelItemName.Size = new System.Drawing.Size(35, 13);
-            this.labelItemName.TabIndex = 0;
-            this.labelItemName.Text = "Nom :";
             // 
             // treeListViewItemRecipe
             // 
             this.treeListViewItemRecipe.AlternateRowBackColor = System.Drawing.Color.WhiteSmoke;
-            this.treeListViewItemRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeListViewItemRecipe.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.treeListViewItemRecipe.CellEditUseWholeCell = false;
+            this.treeListViewItemRecipe.CellVerticalAlignment = System.Drawing.StringAlignment.Near;
+            this.tableLayoutPanel1.SetColumnSpan(this.treeListViewItemRecipe, 4);
+            resources.ApplyResources(this.treeListViewItemRecipe, "treeListViewItemRecipe");
+            this.treeListViewItemRecipe.HeaderWordWrap = true;
             this.treeListViewItemRecipe.HideSelection = false;
             this.treeListViewItemRecipe.HotItemStyle = this.hotItemStyle1;
-            this.treeListViewItemRecipe.Location = new System.Drawing.Point(5, 177);
             this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
             this.treeListViewItemRecipe.OverlayImage.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             this.treeListViewItemRecipe.OverlayText.CornerRounding = 64F;
+            this.tableLayoutPanel1.SetRowSpan(this.treeListViewItemRecipe, 2);
             this.treeListViewItemRecipe.ShowGroups = false;
             this.treeListViewItemRecipe.ShowImagesOnSubItems = true;
-            this.treeListViewItemRecipe.Size = new System.Drawing.Size(1254, 803);
-            this.treeListViewItemRecipe.TabIndex = 5;
             this.treeListViewItemRecipe.UseAlternatingBackColors = true;
             this.treeListViewItemRecipe.UseCellFormatEvents = true;
             this.treeListViewItemRecipe.UseCompatibleStateImageBehavior = false;
@@ -162,41 +118,95 @@ namespace CroussoutDBPlus
             this.hotItemStyle1.BackColor = System.Drawing.Color.LightCyan;
             this.hotItemStyle1.FontStyle = System.Drawing.FontStyle.Bold;
             // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.treeListViewItemRecipe, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 2, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // tableLayoutPanel2
+            // 
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
+            this.tableLayoutPanel2.Controls.Add(this.labelItemID, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.textBoxItemID, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.labelItemName, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comboBoxItemName, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblProgress, 2, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.buttonOptRoute, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.buttonExpandAll, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.buttonCollapseAll, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.buttonItemUpdate, 0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // buttonOptRoute
+            // 
+            resources.ApplyResources(this.buttonOptRoute, "buttonOptRoute");
+            this.buttonOptRoute.Name = "buttonOptRoute";
+            this.buttonOptRoute.UseVisualStyleBackColor = true;
+            this.buttonOptRoute.Click += new System.EventHandler(this.buttonOptRoute_Click);
+            // 
+            // buttonExpandAll
+            // 
+            resources.ApplyResources(this.buttonExpandAll, "buttonExpandAll");
+            this.buttonExpandAll.Name = "buttonExpandAll";
+            this.buttonExpandAll.UseVisualStyleBackColor = true;
+            this.buttonExpandAll.Click += new System.EventHandler(this.buttonExpandAll_Click);
+            // 
+            // buttonCollapseAll
+            // 
+            resources.ApplyResources(this.buttonCollapseAll, "buttonCollapseAll");
+            this.buttonCollapseAll.Name = "buttonCollapseAll";
+            this.buttonCollapseAll.UseVisualStyleBackColor = true;
+            this.buttonCollapseAll.Click += new System.EventHandler(this.buttonCollapseAll_Click);
+            // 
+            // tableLayoutPanel4
+            // 
+            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.buttonItemUpdate;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(1264, 985);
-            this.Controls.Add(this.groupBoxItemSearch);
-            this.Controls.Add(this.treeListViewItemRecipe);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(5);
-            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "formMain";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBoxItemSearch.ResumeLayout(false);
-            this.groupBoxItemSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBoxItemSearch;
         private System.Windows.Forms.Button buttonItemUpdate;
         private System.Windows.Forms.TextBox textBoxItemID;
         private System.Windows.Forms.Label labelItemID;
         private System.Windows.Forms.Label labelItemName;
         private System.Windows.Forms.ComboBox comboBoxItemName;
-        private System.Windows.Forms.Button buttonSaveWeaponList;
         private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
         private System.Windows.Forms.Label lblProgress;
         private BrightIdeasSoftware.HotItemStyle hotItemStyle1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button buttonOptRoute;
+        private System.Windows.Forms.Button buttonExpandAll;
+        private System.Windows.Forms.Button buttonCollapseAll;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
     }
 }
 

@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Policy;
+//using System.Windows.Controls;
 
 namespace CroussoutDBPlus
 {
@@ -77,12 +78,90 @@ namespace CroussoutDBPlus
             comboBoxItemName.ValueMember = "Id";
 
 
-            // creation des colones pour TLV 
+             
 
             // set the delegate that the tree uses to know if a node is expandable
             treeListViewItemRecipe.CanExpandGetter = x => (x as Node).Children.Count > 0;
             // set the delegate that the tree uses to know the children of a node
             treeListViewItemRecipe.ChildrenGetter = x => (x as Node).Children;
+
+            ImageList imageList = new ImageList();
+            //imageList.Images.Add("909", Image.FromFile("data/909.png"));
+            //imageList.Images.Add("168", Image.FromFile("data/168.png"));
+            //imageList.Images.Add("43", Image.FromFile("data/43.png"));
+            //imageList.Images.Add("337", Image.FromFile("data/337.png"));
+            //imageList.Images.Add("449", Image.FromFile("data/449.png"));
+            //imageList.Images.Add("652", Image.FromFile("data/652.png"));
+            //imageList.Images.Add("766", Image.FromFile("data/766.png"));
+            //imageList.Images.Add("784", Image.FromFile("data/784.png"));
+            //imageList.Images.Add("766", Image.FromFile("data/766.png"));
+            //string imageIndex = "909";
+
+            //treeListViewItemRecipe.SmallImageList = imageList;
+
+            // creation des colones pour TLV
+            BrightIdeasSoftware.OLVColumn NameColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn IdColumn = new BrightIdeasSoftware.OLVColumn();
+            //BrightIdeasSoftware.OLVColumn ImageIndexColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn QuantityColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatBuyPriceColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatSellPriceColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatCraftingBuySumColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatCraftingSellSumColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn BuyCraftColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatCraftingMarginColumn = new BrightIdeasSoftware.OLVColumn();
+
+            NameColumn.AspectName = "Name";
+            IdColumn.AspectName = "Id";
+            //ImageIndexColumn.AspectName = "imageIndex";
+            QuantityColumn.AspectName = "Quantity";
+            FormatBuyPriceColumn.AspectName = "FormatBuyPrice";
+            FormatSellPriceColumn.AspectName = "FormatSellPrice";
+            FormatCraftingBuySumColumn.AspectName = "FormatCraftingBuySum";
+            FormatCraftingSellSumColumn.AspectName = "FormatCraftingSellSum";
+            BuyCraftColumn.AspectName = "BuyCraft";
+            FormatCraftingMarginColumn.AspectName = "FormatCraftingMargin";
+
+            NameColumn.Text = "Nom";
+            IdColumn.Text = "Id";
+            //ImageIndexColumn.Text = "Icone";
+            QuantityColumn.Text = "Quantitée";
+            FormatBuyPriceColumn.Text = "achat (Val. basse)";
+            FormatSellPriceColumn.Text = "achat (Val. haute)";
+            FormatCraftingBuySumColumn.Text = "craft (Val. basse)";
+            FormatCraftingSellSumColumn.Text = "craft (Val. haute)";
+            BuyCraftColumn.Text = "Craft ?";
+            FormatCraftingMarginColumn.Text = "Marge de profit si crafté";
+
+            // Set carriage return in header
+            treeListViewItemRecipe.HeaderWordWrap = true; 
+
+            // customize Buy craft column
+            BuyCraftColumn.IsHeaderVertical = false;
+            BuyCraftColumn.CheckBoxes = true;
+
+            //ImageIndexColumn.ShowTextInHeader = false;
+
+            treeListViewItemRecipe.Columns.Add(NameColumn);
+            treeListViewItemRecipe.Columns.Add(IdColumn);
+            //treeListViewItemRecipe.Columns.Add(ImageIndexColumn);
+            treeListViewItemRecipe.Columns.Add(QuantityColumn);
+            treeListViewItemRecipe.Columns.Add(FormatBuyPriceColumn);
+            treeListViewItemRecipe.Columns.Add(FormatSellPriceColumn);
+            treeListViewItemRecipe.Columns.Add(FormatCraftingBuySumColumn);
+            treeListViewItemRecipe.Columns.Add(FormatCraftingSellSumColumn);
+            treeListViewItemRecipe.Columns.Add(BuyCraftColumn);
+            treeListViewItemRecipe.Columns.Add(FormatCraftingMarginColumn);
+
+            treeListViewItemRecipe.AutoResizeColumns();
+
+            NameColumn.ImageGetter = delegate (object rowObject) 
+            {
+                Node node = (Node)rowObject;
+                
+                // decide depending on the rowObject which image to return
+                return node.imageIndex;
+            };
 
 
         }
@@ -102,55 +181,56 @@ namespace CroussoutDBPlus
             string json = await SendWebRequestForJson(apiUrlPrefix + id);
             // reset loading count
             count = 0;
+            lblProgress.Visible = true;
             // chargement du json dans actualRecipe
             CrossoutDb actualRecipe = CrossoutDb.FromJson(json);
             // remplissage de actual recipe complète
             actualRecipe = await PopulateFullRecipeClass(actualRecipe);
 
             // download the png of the item
-            Image icon = await SendWebRequestForPng(ImageUrlPrefix + id + ".png");
+            //Image icon = await SendWebRequestForPng(ImageUrlPrefix + id + ".png");
 
             // create fake nodes
 
             ImageList imageList = new ImageList();
             imageList.Images.Add("909",Image.FromFile("data/909.png"));
             imageList.Images.Add("168",Image.FromFile("data/168.png"));
-            string imageIndex = "909";
+            imageList.Images.Add("43", Image.FromFile("data/43.png"));
+            imageList.Images.Add("337", Image.FromFile("data/337.png"));
+            imageList.Images.Add("449", Image.FromFile("data/449.png"));
+            imageList.Images.Add("652", Image.FromFile("data/652.png"));
+            imageList.Images.Add("766", Image.FromFile("data/766.png"));
+            imageList.Images.Add("784", Image.FromFile("data/784.png"));
 
+            // Assign imageList to treeListViewS
             treeListViewItemRecipe.SmallImageList = imageList;
-            //treeListViewItemRecipe.Columns.
-            //treeListViewItemRecipe.Columns[1].ImageIndex = 0;
-            //treeListViewItemRecipe.SmallImageList.
-            
-            //var parent1 = new Node(actualRecipe.Recipe.Item.Id, imageIndex, actualRecipe.Recipe.Item.Name,actualRecipe.Recipe.Number, actualRecipe.Recipe.Item.FormatBuyPrice, actualRecipe.Recipe.Item.FormatSellPrice, actualRecipe.Recipe.Item.FormatCraftingBuySum, actualRecipe.Recipe.Item.FormatCraftingSellSum) ;
-            var parent1 = new Node(actualRecipe.Recipe) ;
+
+            // 
+            Node parent1 = new Node(actualRecipe.Recipe);
             
             AddChildNodes(parent1,actualRecipe.Recipe);
 
-
             // Assign parent1 to listOfItem
             listOfItem = new List<Node> { parent1 };
-            Generator.GenerateColumns(treeListViewItemRecipe, typeof(Node),true);
+            //Generator.GenerateColumns(treeListViewItemRecipe, typeof(Node),true);
+            
             // Assign listOfItem to treeListView
             treeListViewItemRecipe.Roots = listOfItem;
 
-            //Generator.GenerateColumns(treeListViewItemRecipe, typeof(Node));
-            // Resize column width auto
+            treeListViewItemRecipe.Expand(parent1);
+            //treeListViewItemRecipe.
+            
+            
+            //treeListViewItemRecipe.ExpandAll(); // Work
+
+
 
             //treeListViewItemRecipe.Columns.Contains(image)
-            treeListViewItemRecipe.AutoResizeColumns();
+
+            // Resize column width auto
+            //treeListViewItemRecipe.AutoResizeColumns();
 
             
-
-
-            // Add multiple new lines to the TreeListView
-
-            //treeListViewItemRecipe.AddObject(actualRecipe.Recipe.Item);
-            //treeListViewItemRecipe.AddObject(actualRecipe.Recipe.Ingredients[0].Item);
-            //int testtlv = treeListViewItemRecipe.Items.Count;
-            //MessageBox.Show(testtlv.ToString(), "info" , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //treeListViewItemRecipe.Items.Add(testtlv.ToString());
-            //treeListViewItemRecipe.VirtualListSize;
 
             // Add the image to the ImageList of the TreeListView
             //treeListViewItemRecipe.ImageList.Images.Add(icon);
@@ -177,20 +257,7 @@ namespace CroussoutDBPlus
 
         }
 
-        private void buttonSaveWeaponList_Click(object sender, EventArgs e)
-        {
-            //string json = JsonConvert.SerializeObject(weaponList, Formatting.Indented);
-            //SaveWeaponListJsonToFile(json);
-            SearchDirectionHint directionHint = new SearchDirectionHint();
-            if(treeListViewItemRecipe.FindMatchingRow("Punisher", 0, directionHint) > 0)
-            {
-                //if (treeListViewItemRecipe.Columns[7].Equals(true))
-                //{
-                    Console.WriteLine("succes !!");
-                //}
-            }
 
-        }
 
         //__________//                                                  //__________//
         //__________//         FCT INTERNES                             //__________//
@@ -228,8 +295,6 @@ namespace CroussoutDBPlus
         {
             foreach (Recipe recipe in value.Ingredients)
             {
-
-                //var node = new Node(recipe.Item.Id, "imageIndex", recipe.Item.Name, recipe.Number, recipe.Item.FormatBuyPrice, recipe.Item.FormatSellPrice, recipe.Item.FormatCraftingBuySum, recipe.Item.FormatCraftingSellSum);
                 var node = new Node(recipe);
                 //node.Tag = recipe;
                 parentNode.Children.Add(node);
@@ -256,7 +321,7 @@ namespace CroussoutDBPlus
 
         }
 
-        private async Task<Image> SendWebRequestForPng(string url)
+/*        private async Task<Image> SendWebRequestForPng(string url)
         {
             // Create a new WebClient object
             using (WebClient client = new WebClient())
@@ -288,7 +353,7 @@ namespace CroussoutDBPlus
             //    return iconImage;
             //}
 
-        }
+        }*/
 
         //---------- fonction de sauvegarde de weaponList en json ----------//
 
@@ -332,23 +397,56 @@ namespace CroussoutDBPlus
             {
                 e.Item.BackColor = Color.LightGreen;
                 e.Item.ToolTipText = "craft it !";
+                //treeListViewItemRecipe.Expand(e); // don't work
             }
         }
 
         private void treeListViewRecipe_FormatCell(object sender, FormatCellEventArgs e)
         {
-            if (e.ColumnIndex == 9 && false)
+/*            if (e.ColumnIndex == 9)
             {
 
                 Node node = (Node)e.Model;
                 if (node.BuyCraft)
                 {
                     e.Item.BackColor = Color.LightGreen;
+                    Console.WriteLine("cell true");
                     //e.Item.Checked = true;
                     //e.SubItem.ToolTipText = "craft it !";
                 }
+            }*/
+
+        }
+
+        private void buttonExpandAll_Click(object sender, EventArgs e)
+        {
+            treeListViewItemRecipe.ExpandAll();
+        }
+
+        private void buttonCollapseAll_Click(object sender, EventArgs e)
+        {
+            treeListViewItemRecipe.CollapseAll();
+        }
+
+        private void buttonOptRoute_Click(object sender, EventArgs e)
+        {
+            // Scan what's displayed in treeListView 
+            foreach (Node node in treeListViewItemRecipe.Roots)
+            {
+                ExpandNode(node);
             }
 
+        }
+        private void ExpandNode(Node node)
+        {
+            if (node.BuyCraft)
+            {
+                treeListViewItemRecipe.Expand(node);
+            }
+            foreach (Node childNode in node.Children)
+            {
+                ExpandNode(childNode);
+            }
         }
     }
 }
