@@ -41,12 +41,12 @@ namespace CroussoutDBPlus
             this.hotItemStyle1 = new BrightIdeasSoftware.HotItemStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbSaveSearchedItem = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonOptRoute = new System.Windows.Forms.Button();
             this.buttonExpandAll = new System.Windows.Forms.Button();
             this.buttonCollapseAll = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbSaveSearchedItem = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -142,6 +142,12 @@ namespace CroussoutDBPlus
             this.tableLayoutPanel2.Controls.Add(this.cbSaveSearchedItem, 1, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             // 
+            // cbSaveSearchedItem
+            // 
+            resources.ApplyResources(this.cbSaveSearchedItem, "cbSaveSearchedItem");
+            this.cbSaveSearchedItem.Name = "cbSaveSearchedItem";
+            this.cbSaveSearchedItem.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel3
             // 
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
@@ -177,12 +183,6 @@ namespace CroussoutDBPlus
             // 
             resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            // 
-            // cbSaveSearchedItem
-            // 
-            resources.ApplyResources(this.cbSaveSearchedItem, "cbSaveSearchedItem");
-            this.cbSaveSearchedItem.Name = "cbSaveSearchedItem";
-            this.cbSaveSearchedItem.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
