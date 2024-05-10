@@ -42,7 +42,7 @@ namespace CroussoutDBPlus
         };
 
 
-        //----------  ----------//
+        private List<Node> listOfItem;
 
         int count = 0;
 
@@ -60,19 +60,6 @@ namespace CroussoutDBPlus
         public Form1()
         {
             InitializeComponent();
-            // In your form's constructor or Load event handler, wire up the event handlers.
-            List<User> items = new List<User>();
-            items.Add(new User() { Name = "John Doe", Age = 42, Sex = SexType.Male });
-            items.Add(new User() { Name = "Jane Doe", Age = 39, Sex = SexType.Female });
-            items.Add(new User() { Name = "Sammy Doe", Age = 13, Sex = SexType.Male });
-
-            listViewRecipe.View = View.Details;
-
-            listViewRecipe.Columns.Add("Id", 100);
-            listViewRecipe.Columns.Add("Name", 150);
-            //listViewRecipe.Columns.Add("Craftable", 100);
-
-
 
         }
 
@@ -113,11 +100,36 @@ namespace CroussoutDBPlus
             comboBoxItemName.ValueMember = "Id";
 
 
-            // creation des colones pour TLV 
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Id", "Id"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("Name", "Name"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("BuyPrice", "BuyPrice"));
-            treeListViewItemRecipe.Columns.Add(new OLVColumn("CraftingBuySum", "CraftingBuySum"));
+            //factionList = new ImageList();
+            //for (int i = 1; i<=10; i++)
+            //{
+            //    string tempString = i.ToString();
+            //    factionList.Images.Add(tempString, Image.FromFile("data/" + i.ToString() + ".png"));
+            //}
+            
+
+
+            // set the delegate that the tree uses to know if a node is expandable
+            treeListViewItemRecipe.CanExpandGetter = x => (x as Node).Children.Count > 0;
+            // set the delegate that the tree uses to know the children of a node
+            treeListViewItemRecipe.ChildrenGetter = x => (x as Node).Children;
+
+
+
+
+
+            // creation des colones pour TLV
+            BrightIdeasSoftware.OLVColumn NameColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FactionColumn = new BrightIdeasSoftware.OLVColumn();
+            //BrightIdeasSoftware.OLVColumn IdColumn = new BrightIdeasSoftware.OLVColumn();
+            //BrightIdeasSoftware.OLVColumn ImageIndexColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn QuantityColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatBuyPriceColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatSellPriceColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatCraftingBuySumColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatCraftingSellSumColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn BuyCraftColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn FormatCraftingMarginColumn = new BrightIdeasSoftware.OLVColumn();
 
             NameColumn.AspectName = "Name";
             FactionColumn.AspectName = "Faction";
@@ -143,30 +155,56 @@ namespace CroussoutDBPlus
             BuyCraftColumn.Text = "Craft ?";
             FormatCraftingMarginColumn.Text = "Marge de profit si crafté";
 
-            //formatage de la tree view d'affichage
-            //TreeViewColumn column1 = new TreeViewColumn();
-            //column1.Header = "Column 1";
-            //column1.Width = 100;
-            //TreeViewColumn column2 = new TreeViewColumn();
-            //column1.Header = "Column 2";
-            //column1.Width = 100;
-            //treeViewRecipe.Columns.Add(column1);
-            //treeViewRecipe.Columns.Add(column2);
+            // Set carriage return in header
+            treeListViewItemRecipe.HeaderWordWrap = true;
+
+            // Custumize Faction column
+            FactionColumn.IsHeaderVertical = true;
+            FactionColumn.MaximumWidth = 28;
+
+            // customize Buy craft column
+            BuyCraftColumn.IsHeaderVertical = false;
+            BuyCraftColumn.CheckBoxes = true;
+
+            //ImageIndexColumn.ShowTextInHeader = false;
+
+            treeListViewItemRecipe.Columns.Add(NameColumn);
+            treeListViewItemRecipe.Columns.Add(FactionColumn);
+            //treeListViewItemRecipe.Columns.Add(IdColumn);
+            //treeListViewItemRecipe.Columns.Add(ImageIndexColumn);
+            treeListViewItemRecipe.Columns.Add(QuantityColumn);
+            treeListViewItemRecipe.Columns.Add(FormatBuyPriceColumn);
+            treeListViewItemRecipe.Columns.Add(FormatSellPriceColumn);
+            treeListViewItemRecipe.Columns.Add(FormatCraftingBuySumColumn);
+            treeListViewItemRecipe.Columns.Add(FormatCraftingSellSumColumn);
+            treeListViewItemRecipe.Columns.Add(BuyCraftColumn);
+            treeListViewItemRecipe.Columns.Add(FormatCraftingMarginColumn);
+
+            //Size size = new Size(48, 48);
+            //treeListViewItemRecipe.SmallImageList.ImageSize = size; // <-- fait bugger le bordel (1x icone en 16x16 deux fois plus d'icones 3ieme fois icones en 32x32 ?!)
+
+
+            treeListViewItemRecipe.AutoResizeColumns();
+
+            NameColumn.ImageGetter = delegate (object rowObject) 
+            {
+                Node node = (Node)rowObject;
+                
+                // decide depending on the rowObject which image to return
+                return node.Id.ToString();
+            };
+
+            //FactionColumn.ImageGetter = delegate (object rowObject)
+            //{
+            //    Node node = (Node)rowObject;
+            //    //Console.WriteLine(node.FactionNumber);
+            //    return node.FactionNumber;
+            //};
+
+            //ImageDecoration faction = new ImageDecoration();
+            //faction.Image = Image.FromFile("data/1.png");
+
         }
-
-        public enum SexType { Male, Female };
-
-        public class User
-        {
-            public string Name { get; set; }
-
-            public int Age { get; set; }
-
-            public string Mail { get; set; }
-
-            public SexType Sex { get; set; }
-        }
-
 
         //__________//                                                  //__________//
         //__________//         FCT INTERFACES                           //__________//
@@ -181,8 +219,11 @@ namespace CroussoutDBPlus
             string id = textBoxItemID.Text;
             // telechargement du json de l'item
             string json = await SendWebRequestForJson(apiUrlPrefix + id);
-            // chargement du json dans data
-            dynamic actualRecipe = JsonConvert.DeserializeObject<dynamic>(json);
+            // reset loading count
+            count = 0;
+            lblProgress.Visible = true;
+            // chargement du json dans actualRecipe
+            CrossoutDb actualRecipe = CrossoutDb.FromJson(json);
 
             int tempCbIndex = comboBoxItemName.SelectedIndex;
             // add item to the weaponList
@@ -201,40 +242,66 @@ namespace CroussoutDBPlus
                 SaveWeaponListJsonToFile(js);
             }
 
-            // test json to class : ok
-            CrossoutDb test = CrossoutDb.FromJson(json);
+            // Cleaning of imageList to be ready for new icones of item in node
+            imageList.Images.Clear();
+            treeListViewItemRecipe.SmallImageList = imageList;
+
+            /*            for (int i = 1; i <= 10; i++)
+                        {
+                            string tempString = i.ToString();
+                            imageList.Images.Add(tempString, Image.FromFile("data/" + i.ToString() + ".png"));
+                        }*/
+
+
+            Size size = new Size(32, 32);
+            treeListViewItemRecipe.SmallImageList.ImageSize = size; // <-- fait bugger le bordel (1x icone en 16x16 deux fois plus d'icones 3ieme fois icones en 32x32 ?!)
+
+            // Dl and feed to imageList the first item of recipe
+            Image tempImage = await SendWebRequestForPng(ImageUrlPrefix + actualRecipe.Recipe.Item.Id + ".png");
+            Image itemImage = new Bitmap(tempImage, new Size(28, 28));
+            imageList.Images.Add(actualRecipe.Recipe.Item.Id.ToString(), itemImage);
+            //Set png of item to background
+            treeListViewItemRecipe.OverlayImage.Image = tempImage;
+            
+            //treeListViewItemRecipe.OverlayImage.ReferenceCorner = ContentAlignment.BottomRight;
+
+            // remplissage de actual recipe complète
+            actualRecipe = await PopulateFullRecipeClass(actualRecipe);
 
 
 
-            // download the png of the item
-            Image icon = await SendWebRequestForPng(ImageUrlPrefix + id + ".png");
+            // Assign imageList to treeListView for icon display on first column
+
+            //Size size = new Size(48, 48);
+            //treeListViewItemRecipe.SmallImageList.ImageSize = size; // <-- fait bugger le bordel (1x icone en 16x16 deux fois plus d'icones 3ieme fois icones en 32x32 ?!)
+            //treeListViewItemRecipe.SmallImageList = imageList;
+
+            //treeListViewItemRecipe.LargeImageList = imageList;  
+
+            // 
+            Node parent1 = new Node(actualRecipe.Recipe);
+            //
+            AddChildNodes(parent1,actualRecipe.Recipe);
+
+            // Assign parent1 to listOfItem
+            listOfItem = new List<Node> { parent1 };
+
+            //Generator.GenerateColumns(treeListViewItemRecipe, typeof(Node),true); // Auto columns generator / work but doesn't give columns propername so they are able to be called form code
+            
+            // Assign listOfItem to treeListView
+            treeListViewItemRecipe.Roots = listOfItem;
+
+            // Expand first node of TreeviewList whenever it worth being crafted or not
+            treeListViewItemRecipe.Expand(parent1);
 
 
 
+            //
+            treeListViewItemRecipe.RefreshOverlays();
 
-            // Add multiple new lines to the TreeListView
-
-/*        private void PopulateTreeView(FullRecipeClasse crossoutDb)
-        {
-            // Create a new TreeNode object for the CrossoutDb object
-            TreeNode crossoutDbNode = new TreeNode(crossoutDb.Recipe.Item.Name);
-            crossoutDbNode.Tag = crossoutDb;
-
-            treeListViewItemRecipe.AddObject(test.Recipe.Item);
-            treeListViewItemRecipe.AddObject(test.Recipe.Ingredients[0].Item);
-
-            // Add the image to the ImageList of the TreeListView
-            //treeListViewItemRecipe.ImageList.Images.Add(icon);
-            // Set the ImageIndex property of the TreeListView node
-            //treeListViewItemRecipe.Nodes[0].ImageIndex = treeListViewItemRecipe.ImageList.Images.Count - 1;
-
+            //treeListViewItemRecipe.Refresh();
 
         }
-
-            // Add the CrossoutDb node to the TreeView
-            treeViewRecipe.Nodes.Add(crossoutDbNode);
-        }*/
-
 
         //---------- fonction de selection de la combobox ----------//
         private void comboBoxItemName_SelectedIndexChanged(object sender, EventArgs e)
@@ -323,23 +390,15 @@ namespace CroussoutDBPlus
 
         }
 
+        //---------- fonction de récupération d'icone d'item sur cdb ----------//
+
         private async Task<Image> SendWebRequestForPng(string url)
         {
             // Create a new WebClient object
             using (WebClient client = new WebClient())
             {
                 // Download the image from the URL as a byte array
-                byte[] imageData;
-                try
-                {
-                    imageData = client.DownloadData(url);
-                }
-                catch (WebException ex)
-                {
-                    Console.WriteLine("Error downloading image from {0}: {1}", url, ex.Message);
-                    return null;
-                }
-
+                byte[] imageData = client.DownloadData(url);
                 // Create a new MemoryStream object from the byte array
                 using (MemoryStream ms = new MemoryStream(imageData))
                 {
@@ -351,76 +410,7 @@ namespace CroussoutDBPlus
                 }
             }
 
-
-            //// Add the image to the ImageList of the TreeListView
-            //treeListView1.ImageList.Images.Add(image);
-            //// Set the ImageIndex property of the TreeListView node
-            //treeListView1.Nodes[0].ImageIndex = treeListView1.ImageList.Images.Count - 1;
-
-            //using (WebClient client = new WebClient())
-            //{
-            //    byte[] iconData = client.DownloadData(url);
-            //    Image iconImage = Image.FromStream(new MemoryStream(iconData));
-            //    //string json = await client.DownloadStringTaskAsync(new Uri(url));
-            //    return iconImage;
-            //}
-
         }
-
-        private void FeedTreeView( dynamic recipe)
-        {
-            // remplissage de la treeview
-            TreeNode rootNode = new TreeNode("");
-            rootNode.Text = recipe.recipe.item.name;
-            treeViewRecipe.Nodes.Add(rootNode);
-
-            foreach (var Item in recipe.recipe.ingredients)
-            {
-                TreeNode childNode = new TreeNode("");
-                int quantity;
-                if (Item.item.amount != 0)
-                {
-                    quantity = Item.number / Item.item.amount;
-                }
-                else
-                {
-                    quantity = Item.number;
-                }
-
-                childNode.Text = Item.item.name;
-
-                //childNode.Text = String.Format("{0} \t\t\t {1} \t\t\t {2}", Item.item.name + " ", " Quantité : " + quantity , " buy price : " + Item.formatBuyPriceTimesNumber);
-                //string column1 = Item.item.name + "".PadRight(30);
-                //string column2 = "Quantité : " + quantity +"".PadRight(30);
-                //string column3 = "Buy price : " + Item.formatBuyPriceTimesNumber + "".PadRight(30);
-                //childNode.Text = column1 + column2 + column3;
-
-
-                rootNode.Nodes.Add(childNode);
-
-            }
-        }
-
-        //---------- fonction de test sur les classes ----------//
-
-        public void ChangeNameByValue(Person person)
-
-        {
-
-            person.Name = "Alice";
-
-        }
-
-
-        public void ChangeNameByReference(ref Person person)
-
-        {
-
-            person.Name = "Alice";
-
-        }
-
-
 
         //---------- fonction de sauvegarde de weaponList en json ----------//
 
@@ -448,51 +438,62 @@ namespace CroussoutDBPlus
             return js;
         }
 
+        private void TreeListViewItemRecipe_Expand(object sender, TreeBranchExpandedEventArgs e)
+        {
+            // This event is triggered after a node has been expanded
 
+            // You can add your custom logic here
+            treeListViewItemRecipe.AutoResizeColumns();
+            //Console.WriteLine($"Node '{e.Item.Name}' expanded.");
+        }
 
+        private void treeListViewRecipe_FormatRow(object sender, FormatRowEventArgs e)
+        {
+            Node node = (Node)e.Model;
+            if (node.BuyCraft)
+            {
+                e.Item.BackColor = Color.LightGreen;
+                e.Item.ToolTipText = "craft it !";
+                //treeListViewItemRecipe.Expand(e); // don't work
+            }
+        }
 
+        private void treeListViewRecipe_FormatCell(object sender, FormatCellEventArgs e)
+        {
+            Node node = (Node)e.Model;
+            if (e.ColumnIndex == 1)
+            {
 
+                
+                if (node.FactionNumber >= 1 && node.FactionNumber <= 10)
+                {
+                    Image factionImage = new Bitmap(Image.FromFile("data/" + node.FactionNumber + ".png"), new Size(32, 32));
+                    e.SubItem.Decoration = new ImageDecoration(factionImage);
+                    //Console.WriteLine("cell true");
 
+                }
+            }
+/*            if (e.ColumnIndex == 0)  // show item icon as decoration on row -> not that convicing
+            {
+                if (imageList.Images[node.Id.ToString()] != null && node.FormatCraftingSellSum != "0")
+                {
+                    //int idIndex = (int)node.Id;
+                    Image itemImage = new Bitmap(imageList.Images[node.Id.ToString()], new Size(28, 28));
+                    e.SubItem.Decoration = new ImageDecoration(itemImage, 100);
+                    //Console.WriteLine("cell true");
+                }
+            }*/
+        }
 
+        private void buttonExpandAll_Click(object sender, EventArgs e)
+        {
+            treeListViewItemRecipe.ExpandAll();
+        }
 
-
-
-        //public Recipe ParseClassRecipe ( string js )
-        //{
-        //    Recipe rec;
-        //    dynamic data = JsonConvert.DeserializeObject<dynamic>(js);
-        //    rec.sumBuy = data.recipe.sumBuy;
-        //    rec.sumSell = data.recipe.sumSell;
-        //    rec.item.id = data.recipe.id;
-        //    rec.item.name = data.recipe.item.name;
-
-
-        //    return rec;
-
-        //}
-
-        //private string jsonToString (string)
-        //{
-        //    //using (StringReader sr = new StringReader(json)) ;
-
-        //    //using (JsonTextReader reader = new JsonTextReader(sr)) ;
-        //    JsonTextReader reader = new JsonTextReader(new StringReader(i.JSON));
-        //    while (reader.Read())
-        //    {
-        //        if (reader.Value != null)
-        //        {
-        //            //Console.WriteLine("Token: {0}, Value: {1}", reader.TokenType, reader.Value);
-        //            listBoxItemRecipe.Items.Add(reader.TokenType);
-        //            listBoxItemRecipe.Items.Add(reader.Value);
-
-        //        }
-        //        else
-        //        {
-        //            //Console.WriteLine("Token: {0}", reader.TokenType);
-        //            //listBoxItemRecipe.Items.Add(reader.TokenType);
-        //        }
-        //    }
-        //}
+        private void buttonCollapseAll_Click(object sender, EventArgs e)
+        {
+            treeListViewItemRecipe.CollapseAll();
+        }
 
         private void buttonOptRoute_Click(object sender, EventArgs e)
         {
@@ -502,7 +503,18 @@ namespace CroussoutDBPlus
                 ExpandNode(node);
             }
 
-
         }
+        private void ExpandNode(Node node)
+        {
+            if (node.BuyCraft)
+            {
+                treeListViewItemRecipe.Expand(node);
+            }
+            foreach (Node childNode in node.Children)
+            {
+                ExpandNode(childNode);
+            }
+        }
+
     }
 }

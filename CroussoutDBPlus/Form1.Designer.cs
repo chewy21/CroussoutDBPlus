@@ -37,11 +37,20 @@ namespace CroussoutDBPlus
             this.textBoxItemID = new System.Windows.Forms.TextBox();
             this.labelItemID = new System.Windows.Forms.Label();
             this.labelItemName = new System.Windows.Forms.Label();
-            this.treeViewRecipe = new System.Windows.Forms.TreeView();
-            this.buttonSaveWeaponList = new System.Windows.Forms.Button();
             this.treeListViewItemRecipe = new BrightIdeasSoftware.TreeListView();
-            this.groupBoxItemSearch.SuspendLayout();
+            this.hotItemStyle1 = new BrightIdeasSoftware.HotItemStyle();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbSaveSearchedItem = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonOptRoute = new System.Windows.Forms.Button();
+            this.buttonExpandAll = new System.Windows.Forms.Button();
+            this.buttonCollapseAll = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblProgress
@@ -80,43 +89,41 @@ namespace CroussoutDBPlus
             // 
             resources.ApplyResources(this.labelItemName, "labelItemName");
             this.labelItemName.Name = "labelItemName";
-            this.labelItemName.Size = new System.Drawing.Size(35, 13);
-            this.labelItemName.TabIndex = 0;
-            this.labelItemName.Text = "Nom :";
             // 
-            // treeViewRecipe
+            // treeListViewItemRecipe
             // 
-            this.treeViewRecipe.BackColor = System.Drawing.Color.Gainsboro;
-            this.treeViewRecipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeViewRecipe.Location = new System.Drawing.Point(13, 131);
-            this.treeViewRecipe.Name = "treeViewRecipe";
-            this.treeViewRecipe.Size = new System.Drawing.Size(404, 840);
-            this.treeViewRecipe.TabIndex = 2;
-            this.treeViewRecipe.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRecipe_AfterCollapse);
-            this.treeViewRecipe.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRecipe_AfterExpand);
-            // 
-            // buttonSaveWeaponList
-            // 
-            this.buttonSaveWeaponList.Location = new System.Drawing.Point(491, 95);
-            this.buttonSaveWeaponList.Name = "buttonSaveWeaponList";
-            this.buttonSaveWeaponList.Size = new System.Drawing.Size(75, 23);
-            this.buttonSaveWeaponList.TabIndex = 4;
-            this.buttonSaveWeaponList.Text = "Save Weapon List";
-            this.buttonSaveWeaponList.UseVisualStyleBackColor = true;
-            this.buttonSaveWeaponList.Click += new System.EventHandler(this.buttonSaveWeaponList_Click);
-            // 
-            // listViewRecipe
-            // 
+            this.treeListViewItemRecipe.AlternateRowBackColor = System.Drawing.Color.WhiteSmoke;
+            this.treeListViewItemRecipe.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.treeListViewItemRecipe.CellEditUseWholeCell = false;
+            this.treeListViewItemRecipe.CellVerticalAlignment = System.Drawing.StringAlignment.Near;
+            this.tableLayoutPanel1.SetColumnSpan(this.treeListViewItemRecipe, 4);
+            resources.ApplyResources(this.treeListViewItemRecipe, "treeListViewItemRecipe");
+            this.treeListViewItemRecipe.FullRowSelect = true;
+            this.treeListViewItemRecipe.HeaderWordWrap = true;
             this.treeListViewItemRecipe.HideSelection = false;
-            this.treeListViewItemRecipe.Location = new System.Drawing.Point(13, 458);
+            this.treeListViewItemRecipe.HotItemStyle = this.hotItemStyle1;
             this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
+            this.treeListViewItemRecipe.OverlayText.CornerRounding = 64F;
+            this.treeListViewItemRecipe.RowHeight = 28;
+            this.tableLayoutPanel1.SetRowSpan(this.treeListViewItemRecipe, 2);
             this.treeListViewItemRecipe.ShowGroups = false;
-            this.treeListViewItemRecipe.Size = new System.Drawing.Size(1239, 515);
-            this.treeListViewItemRecipe.TabIndex = 5;
+            this.treeListViewItemRecipe.ShowImagesOnSubItems = true;
+            this.treeListViewItemRecipe.UseAlternatingBackColors = true;
+            this.treeListViewItemRecipe.UseCellFormatEvents = true;
             this.treeListViewItemRecipe.UseCompatibleStateImageBehavior = false;
+            this.treeListViewItemRecipe.UseHotItem = true;
             this.treeListViewItemRecipe.View = System.Windows.Forms.View.Details;
             this.treeListViewItemRecipe.VirtualMode = true;
+            this.treeListViewItemRecipe.Expanded += new System.EventHandler<BrightIdeasSoftware.TreeBranchExpandedEventArgs>(this.TreeListViewItemRecipe_Expand);
+            this.treeListViewItemRecipe.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.treeListViewRecipe_FormatCell);
+            this.treeListViewItemRecipe.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.treeListViewRecipe_FormatRow);
+            // 
+            // hotItemStyle1
+            // 
+            this.hotItemStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.hotItemStyle1.FontStyle = System.Drawing.FontStyle.Bold;
+            // 
+            // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.treeListViewItemRecipe, 0, 1);
@@ -134,6 +141,12 @@ namespace CroussoutDBPlus
             this.tableLayoutPanel2.Controls.Add(this.labelItemID, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.cbSaveSearchedItem, 1, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            // 
+            // cbSaveSearchedItem
+            // 
+            resources.ApplyResources(this.cbSaveSearchedItem, "cbSaveSearchedItem");
+            this.cbSaveSearchedItem.Name = "cbSaveSearchedItem";
+            this.cbSaveSearchedItem.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -171,36 +184,24 @@ namespace CroussoutDBPlus
             resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             // 
-            // cbSaveSearchedItem
-            // 
-            resources.ApplyResources(this.cbSaveSearchedItem, "cbSaveSearchedItem");
-            this.cbSaveSearchedItem.Name = "cbSaveSearchedItem";
-            this.cbSaveSearchedItem.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AcceptButton = this.buttonItemUpdate;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(1264, 985);
-            this.Controls.Add(this.treeListViewItemRecipe);
-            this.Controls.Add(this.buttonSaveWeaponList);
-            this.Controls.Add(this.treeViewRecipe);
-            this.Controls.Add(this.groupBoxItemSearch);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBoxItemSearch.ResumeLayout(false);
-            this.groupBoxItemSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
-        }
-
-        private void TreeViewRecipe_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -209,8 +210,17 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.Label labelItemID;
         private System.Windows.Forms.Label labelItemName;
         private System.Windows.Forms.ComboBox comboBoxItemName;
-        private System.Windows.Forms.Button buttonSaveWeaponList;
-        private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
+        private System.Windows.Forms.Label lblProgress;
+        private BrightIdeasSoftware.HotItemStyle hotItemStyle1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button buttonOptRoute;
+        private System.Windows.Forms.Button buttonExpandAll;
+        private System.Windows.Forms.Button buttonCollapseAll;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        public BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
+        private System.Windows.Forms.CheckBox cbSaveSearchedItem;
     }
 }
 
