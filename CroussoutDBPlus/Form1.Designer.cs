@@ -29,8 +29,9 @@ namespace CroussoutDBPlus
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            this.groupBoxItemSearch = new System.Windows.Forms.GroupBox();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.lblProgress = new System.Windows.Forms.Label();
             this.comboBoxItemName = new System.Windows.Forms.ComboBox();
             this.buttonItemUpdate = new System.Windows.Forms.Button();
             this.textBoxItemID = new System.Windows.Forms.TextBox();
@@ -38,63 +39,46 @@ namespace CroussoutDBPlus
             this.labelItemName = new System.Windows.Forms.Label();
             this.treeViewRecipe = new System.Windows.Forms.TreeView();
             this.buttonSaveWeaponList = new System.Windows.Forms.Button();
-            this.listViewRecipe = new System.Windows.Forms.ListView();
+            this.treeListViewItemRecipe = new BrightIdeasSoftware.TreeListView();
             this.groupBoxItemSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBoxItemSearch
+            // lblProgress
             // 
-            this.groupBoxItemSearch.Controls.Add(this.comboBoxItemName);
-            this.groupBoxItemSearch.Controls.Add(this.buttonItemUpdate);
-            this.groupBoxItemSearch.Controls.Add(this.textBoxItemID);
-            this.groupBoxItemSearch.Controls.Add(this.labelItemID);
-            this.groupBoxItemSearch.Controls.Add(this.labelItemName);
-            this.groupBoxItemSearch.Location = new System.Drawing.Point(13, 13);
-            this.groupBoxItemSearch.Name = "groupBoxItemSearch";
-            this.groupBoxItemSearch.Size = new System.Drawing.Size(391, 111);
-            this.groupBoxItemSearch.TabIndex = 0;
-            this.groupBoxItemSearch.TabStop = false;
-            this.groupBoxItemSearch.Text = "Recherche d\'item";
+            resources.ApplyResources(this.lblProgress, "lblProgress");
+            this.lblProgress.Name = "lblProgress";
             // 
             // comboBoxItemName
             // 
+            this.comboBoxItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            resources.ApplyResources(this.comboBoxItemName, "comboBoxItemName");
             this.comboBoxItemName.FormattingEnabled = true;
-            this.comboBoxItemName.Location = new System.Drawing.Point(66, 20);
             this.comboBoxItemName.Name = "comboBoxItemName";
-            this.comboBoxItemName.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxItemName.TabIndex = 5;
+            this.comboBoxItemName.Sorted = true;
             this.comboBoxItemName.SelectedIndexChanged += new System.EventHandler(this.comboBoxItemName_SelectedIndexChanged);
             // 
             // buttonItemUpdate
             // 
-            this.buttonItemUpdate.Location = new System.Drawing.Point(310, 82);
+            resources.ApplyResources(this.buttonItemUpdate, "buttonItemUpdate");
             this.buttonItemUpdate.Name = "buttonItemUpdate";
-            this.buttonItemUpdate.Size = new System.Drawing.Size(75, 23);
-            this.buttonItemUpdate.TabIndex = 4;
-            this.buttonItemUpdate.Text = "Mettre à jour";
             this.buttonItemUpdate.UseVisualStyleBackColor = true;
             this.buttonItemUpdate.Click += new System.EventHandler(this.buttonItemUpdate_Click);
             // 
             // textBoxItemID
             // 
-            this.textBoxItemID.Location = new System.Drawing.Point(66, 46);
+            resources.ApplyResources(this.textBoxItemID, "textBoxItemID");
             this.textBoxItemID.Name = "textBoxItemID";
-            this.textBoxItemID.Size = new System.Drawing.Size(121, 20);
-            this.textBoxItemID.TabIndex = 3;
             // 
             // labelItemID
             // 
-            this.labelItemID.AutoSize = true;
-            this.labelItemID.Location = new System.Drawing.Point(7, 46);
+            resources.ApplyResources(this.labelItemID, "labelItemID");
             this.labelItemID.Name = "labelItemID";
-            this.labelItemID.Size = new System.Drawing.Size(24, 13);
-            this.labelItemID.TabIndex = 2;
-            this.labelItemID.Text = "ID :";
             // 
             // labelItemName
             // 
-            this.labelItemName.AutoSize = true;
-            this.labelItemName.Location = new System.Drawing.Point(7, 20);
+            resources.ApplyResources(this.labelItemName, "labelItemName");
             this.labelItemName.Name = "labelItemName";
             this.labelItemName.Size = new System.Drawing.Size(35, 13);
             this.labelItemName.TabIndex = 0;
@@ -123,34 +107,93 @@ namespace CroussoutDBPlus
             // 
             // listViewRecipe
             // 
-            this.listViewRecipe.GridLines = true;
-            this.listViewRecipe.HideSelection = false;
-            this.listViewRecipe.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listViewRecipe.LabelEdit = true;
-            this.listViewRecipe.Location = new System.Drawing.Point(424, 131);
-            this.listViewRecipe.Name = "listViewRecipe";
-            this.listViewRecipe.Size = new System.Drawing.Size(828, 840);
-            this.listViewRecipe.TabIndex = 5;
-            this.listViewRecipe.UseCompatibleStateImageBehavior = false;
-            this.listViewRecipe.SelectedIndexChanged += new System.EventHandler(this.listViewRecipe_SelectedIndexChanged);
+            this.treeListViewItemRecipe.CellEditUseWholeCell = false;
+            this.treeListViewItemRecipe.HideSelection = false;
+            this.treeListViewItemRecipe.Location = new System.Drawing.Point(13, 458);
+            this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
+            this.treeListViewItemRecipe.ShowGroups = false;
+            this.treeListViewItemRecipe.Size = new System.Drawing.Size(1239, 515);
+            this.treeListViewItemRecipe.TabIndex = 5;
+            this.treeListViewItemRecipe.UseCompatibleStateImageBehavior = false;
+            this.treeListViewItemRecipe.View = System.Windows.Forms.View.Details;
+            this.treeListViewItemRecipe.VirtualMode = true;
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.treeListViewItemRecipe, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 2, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // tableLayoutPanel2
+            // 
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
+            this.tableLayoutPanel2.Controls.Add(this.comboBoxItemName, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.labelItemName, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.textBoxItemID, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.labelItemID, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cbSaveSearchedItem, 1, 2);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.lblProgress, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.buttonOptRoute, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.buttonExpandAll, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.buttonCollapseAll, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.buttonItemUpdate, 0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // buttonOptRoute
+            // 
+            resources.ApplyResources(this.buttonOptRoute, "buttonOptRoute");
+            this.buttonOptRoute.Name = "buttonOptRoute";
+            this.buttonOptRoute.UseVisualStyleBackColor = true;
+            this.buttonOptRoute.Click += new System.EventHandler(this.buttonOptRoute_Click);
+            // 
+            // buttonExpandAll
+            // 
+            resources.ApplyResources(this.buttonExpandAll, "buttonExpandAll");
+            this.buttonExpandAll.Name = "buttonExpandAll";
+            this.buttonExpandAll.UseVisualStyleBackColor = true;
+            this.buttonExpandAll.Click += new System.EventHandler(this.buttonExpandAll_Click);
+            // 
+            // buttonCollapseAll
+            // 
+            resources.ApplyResources(this.buttonCollapseAll, "buttonCollapseAll");
+            this.buttonCollapseAll.Name = "buttonCollapseAll";
+            this.buttonCollapseAll.UseVisualStyleBackColor = true;
+            this.buttonCollapseAll.Click += new System.EventHandler(this.buttonCollapseAll_Click);
+            // 
+            // tableLayoutPanel4
+            // 
+            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
+            // cbSaveSearchedItem
+            // 
+            resources.ApplyResources(this.cbSaveSearchedItem, "cbSaveSearchedItem");
+            this.cbSaveSearchedItem.Name = "cbSaveSearchedItem";
+            this.cbSaveSearchedItem.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.buttonItemUpdate;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1264, 985);
-            this.Controls.Add(this.listViewRecipe);
+            this.Controls.Add(this.treeListViewItemRecipe);
             this.Controls.Add(this.buttonSaveWeaponList);
             this.Controls.Add(this.treeViewRecipe);
             this.Controls.Add(this.groupBoxItemSearch);
             this.Name = "Form1";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text = "formMain";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxItemSearch.ResumeLayout(false);
             this.groupBoxItemSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -161,16 +204,13 @@ namespace CroussoutDBPlus
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBoxItemSearch;
         private System.Windows.Forms.Button buttonItemUpdate;
         private System.Windows.Forms.TextBox textBoxItemID;
         private System.Windows.Forms.Label labelItemID;
         private System.Windows.Forms.Label labelItemName;
-        private System.Windows.Forms.TreeView treeViewRecipe;
         private System.Windows.Forms.ComboBox comboBoxItemName;
         private System.Windows.Forms.Button buttonSaveWeaponList;
-        private System.Windows.Forms.ListView listViewRecipe;
+        private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
     }
 }
 

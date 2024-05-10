@@ -1,0 +1,8 @@
+TODO :
+
+- Ajout du controle et DL si manquant des icones de factions / ou du chargement au démarage des icones a voir
+- calcul et affichage des sommes de ressources necessaire
+- Ajout d'un filtre relic/legendaire/... pour la liste d'armes
+- Ajout d'un contrle de choix pour valeur haute valeur basse dans les calcul de craft margin
+- Ajout d'un choix utilisateur sur quoi a été crafté/Acheté
+- Ajout d'un systeme de creation et de gestion de recettes perso

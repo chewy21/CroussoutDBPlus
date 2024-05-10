@@ -239,54 +239,8 @@ namespace CroussoutDBPlus
         [JsonProperty("imagePath")]
         public string ImagePath { get; set; }
 
-        [JsonProperty("sortedStats")]
-        public List<SortedStat> SortedStats { get; set; }
     }
 
-    public partial class SortedStat
-    {
-        [JsonProperty("key")]
-        public string Key { get; set; }
-
-        [JsonProperty("stat")]
-        public Stat Stat { get; set; }
-
-        [JsonProperty("value")]
-        public double Value { get; set; }
-
-        [JsonProperty("displayValue")]
-        public bool DisplayValue { get; set; }
-    }
-
-    public partial class Stat
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("order")]
-        public long Order { get; set; }
-
-        [JsonProperty("override")]
-        public object Override { get; set; }
-
-        [JsonProperty("showProgressBar")]
-        public bool ShowProgressBar { get; set; }
-
-        [JsonProperty("showPercentage")]
-        public bool ShowPercentage { get; set; }
-
-        [JsonProperty("showAddition")]
-        public bool ShowAddition { get; set; }
-
-        [JsonProperty("showSubtraction")]
-        public bool ShowSubtraction { get; set; }
-
-        [JsonProperty("customClasses")]
-        public string CustomClasses { get; set; }
-
-        [JsonProperty("type")]
-        public long Type { get; set; }
-    }
 
     public partial class CrossoutDb
     {
