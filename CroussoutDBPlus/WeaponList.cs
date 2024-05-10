@@ -16,10 +16,14 @@ namespace CroussoutDBPlus
         public string Id { get; set; }
         public string Name { get; set; }
         public override string ToString()
-
         {
-
             return Name;
+        }
+
+        public Weapon( string id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
 
         }
     }

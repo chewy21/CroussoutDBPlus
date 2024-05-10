@@ -127,10 +127,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblProgress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 2</value>
+    <value>105, 0</value>
   </data>
   <data name="lblProgress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 35</value>
+    <value>96, 37</value>
   </data>
   <data name="lblProgress.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -151,10 +151,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblProgress.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
+    <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;lblProgress.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>0</value>
   </data>
   <data name="comboBoxItemName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -178,7 +178,7 @@
     <value>tableLayoutPanel2</value>
   </data>
   <data name="&gt;&gt;comboBoxItemName.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="buttonItemUpdate.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -205,13 +205,13 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonItemUpdate.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="textBoxItemID.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="textBoxItemID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>65, 40</value>
+    <value>65, 28</value>
   </data>
   <data name="textBoxItemID.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 20</value>
@@ -229,7 +229,7 @@
     <value>tableLayoutPanel2</value>
   </data>
   <data name="&gt;&gt;textBoxItemID.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="labelItemID.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -238,10 +238,10 @@
     <value>Fill</value>
   </data>
   <data name="labelItemID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 37</value>
+    <value>5, 25</value>
   </data>
   <data name="labelItemID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 35</value>
+    <value>54, 23</value>
   </data>
   <data name="labelItemID.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -262,7 +262,7 @@
     <value>tableLayoutPanel2</value>
   </data>
   <data name="&gt;&gt;labelItemID.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="labelItemName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -273,11 +273,8 @@
   <data name="labelItemName.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 2</value>
   </data>
-  <data name="labelItemName.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 10, 10, 10</value>
-  </data>
   <data name="labelItemName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 35</value>
+    <value>54, 23</value>
   </data>
   <data name="labelItemName.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -298,13 +295,43 @@
     <value>tableLayoutPanel2</value>
   </data>
   <data name="&gt;&gt;labelItemName.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="cbSaveSearchedItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbSaveSearchedItem.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="cbSaveSearchedItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>65, 51</value>
+  </data>
+  <data name="cbSaveSearchedItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 18</value>
+  </data>
+  <data name="cbSaveSearchedItem.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="cbSaveSearchedItem.Text" xml:space="preserve">
+    <value>Sauvegarder les items recherchés</value>
+  </data>
+  <data name="&gt;&gt;cbSaveSearchedItem.Name" xml:space="preserve">
+    <value>cbSaveSearchedItem</value>
+  </data>
+  <data name="&gt;&gt;cbSaveSearchedItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbSaveSearchedItem.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;cbSaveSearchedItem.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="tableLayoutPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -316,7 +343,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="tableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>307, 74</value>
@@ -337,7 +364,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="labelItemID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxItemID" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelItemName" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comboBoxItemName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblProgress" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,60,Percent,66,66666,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,50,Percent,50,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="comboBoxItemName" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelItemName" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textBoxItemID" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelItemID" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cbSaveSearchedItem" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,60,Percent,66,66666,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
@@ -367,7 +394,7 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonOptRoute.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="buttonExpandAll.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -394,7 +421,7 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonExpandAll.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="buttonCollapseAll.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -421,7 +448,7 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonCollapseAll.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -451,7 +478,7 @@
     <value>2</value>
   </data>
   <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonOptRoute" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonExpandAll" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonCollapseAll" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="buttonItemUpdate" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lblProgress" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonOptRoute" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonExpandAll" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonCollapseAll" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="buttonItemUpdate" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
@@ -519,129 +546,20 @@
   <data name="treeListViewItemRecipe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="treeListViewItemRecipe.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
   <metadata name="hotItemStyle1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="treeListViewItemRecipe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 83</value>
+    <value>20, 100</value>
   </data>
-  <data name="resource.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
+  <data name="treeListViewItemRecipe.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 20, 20, 20</value>
   </data>
   <data name="treeListViewItemRecipe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1248, 788</value>
+    <value>1214, 754</value>
   </data>
   <data name="treeListViewItemRecipe.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>

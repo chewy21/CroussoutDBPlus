@@ -13,35 +13,45 @@ namespace CroussoutDBPlus
     // embedded class
     class Node
     {
-        [OLVColumn("Id",IsVisible =false)]
+
         public long Id { get; private set; }
-        [OLVColumn("Icone",ImageAspectName ="168", Name = "imageIndexColumn")]
-        public string imageIndex { get; private set; }
-        [OLVColumn("Nom")]
+
+        //public string imageIndex { get; private set; }
+
+        public long FactionNumber { get; private set; }
+
         public string Name { get; private set; }
-        [OLVColumn("Quantité à acheter/crafter")]
+
         public long Quantity { get; private set; } // quantitée reel (recipe.number)
-        [OLVColumn("achat (Val. basse)")]
+ 
         public string FormatBuyPrice { get; private set; } // prix valeur haute (Item.)
-        [OLVColumn("achat (Val. haute)")]
+
         public string FormatSellPrice { get; private set; } // prix valeur basse
-        [OLVColumn("craft (Val. basse)")]
+
         public string FormatCraftingBuySum { get; private set; } // prix somme d'achat craft valeur haute
-        [OLVColumn("craft (Val. haute)")]
+ 
         public string FormatCraftingSellSum { get; private set; } // prix somme d'achat craft valeur basse
-        [OLVColumn("Craft ?", IsEditable=false, ToolTipText = "crafter si checkbox est cochée")]
+
         public bool BuyCraft {  get; private set; } // if margin negative buy (0) else craft (1)
-        [OLVColumn("Marge de profit si crafté")]
+
         public string FormatCraftingMargin { get; private set; }
 
-        [OLVColumn(IsVisible = false)]
         public List<Node> Children { get; private set; }
 
         
         public Node(Recipe recipe)
         {
             this.Id = recipe.Item.Id;
-            this.imageIndex = recipe.Item.Id.ToString();
+            //this.imageIndex = recipe.Item.Id.ToString();
+            if (recipe.Item.CraftingResultAmount > 0)
+            {
+                this.FactionNumber = recipe.Item.FactionNumber;
+            }
+            else { 
+                this.FactionNumber = 0; 
+            
+            }
+            
             this.Name = recipe.Item.Name;
             this.Quantity = recipe.Number;
             this.FormatBuyPrice = recipe.Item.FormatBuyPrice;

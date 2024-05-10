@@ -46,6 +46,7 @@ namespace CroussoutDBPlus
             this.buttonExpandAll = new System.Windows.Forms.Button();
             this.buttonCollapseAll = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbSaveSearchedItem = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -59,9 +60,12 @@ namespace CroussoutDBPlus
             // 
             // comboBoxItemName
             // 
+            this.comboBoxItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             resources.ApplyResources(this.comboBoxItemName, "comboBoxItemName");
             this.comboBoxItemName.FormattingEnabled = true;
             this.comboBoxItemName.Name = "comboBoxItemName";
+            this.comboBoxItemName.Sorted = true;
             this.comboBoxItemName.SelectedIndexChanged += new System.EventHandler(this.comboBoxItemName_SelectedIndexChanged);
             // 
             // buttonItemUpdate
@@ -94,12 +98,13 @@ namespace CroussoutDBPlus
             this.treeListViewItemRecipe.CellVerticalAlignment = System.Drawing.StringAlignment.Near;
             this.tableLayoutPanel1.SetColumnSpan(this.treeListViewItemRecipe, 4);
             resources.ApplyResources(this.treeListViewItemRecipe, "treeListViewItemRecipe");
+            this.treeListViewItemRecipe.FullRowSelect = true;
             this.treeListViewItemRecipe.HeaderWordWrap = true;
             this.treeListViewItemRecipe.HideSelection = false;
             this.treeListViewItemRecipe.HotItemStyle = this.hotItemStyle1;
             this.treeListViewItemRecipe.Name = "treeListViewItemRecipe";
-            this.treeListViewItemRecipe.OverlayImage.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             this.treeListViewItemRecipe.OverlayText.CornerRounding = 64F;
+            this.treeListViewItemRecipe.RowHeight = 28;
             this.tableLayoutPanel1.SetRowSpan(this.treeListViewItemRecipe, 2);
             this.treeListViewItemRecipe.ShowGroups = false;
             this.treeListViewItemRecipe.ShowImagesOnSubItems = true;
@@ -130,16 +135,17 @@ namespace CroussoutDBPlus
             // tableLayoutPanel2
             // 
             resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-            this.tableLayoutPanel2.Controls.Add(this.labelItemID, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBoxItemID, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.labelItemName, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.comboBoxItemName, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblProgress, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.labelItemName, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.textBoxItemID, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.labelItemID, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cbSaveSearchedItem, 1, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             // 
             // tableLayoutPanel3
             // 
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.lblProgress, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.buttonOptRoute, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.buttonExpandAll, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.buttonCollapseAll, 2, 1);
@@ -172,6 +178,12 @@ namespace CroussoutDBPlus
             resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             // 
+            // cbSaveSearchedItem
+            // 
+            resources.ApplyResources(this.cbSaveSearchedItem, "cbSaveSearchedItem");
+            this.cbSaveSearchedItem.Name = "cbSaveSearchedItem";
+            this.cbSaveSearchedItem.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AcceptButton = this.buttonItemUpdate;
@@ -187,6 +199,7 @@ namespace CroussoutDBPlus
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -197,7 +210,6 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.Label labelItemID;
         private System.Windows.Forms.Label labelItemName;
         private System.Windows.Forms.ComboBox comboBoxItemName;
-        private BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
         private System.Windows.Forms.Label lblProgress;
         private BrightIdeasSoftware.HotItemStyle hotItemStyle1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -207,6 +219,8 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.Button buttonExpandAll;
         private System.Windows.Forms.Button buttonCollapseAll;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        public BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
+        private System.Windows.Forms.CheckBox cbSaveSearchedItem;
     }
 }
 
