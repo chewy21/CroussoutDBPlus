@@ -247,6 +247,12 @@ namespace CroussoutDBPlus
         public static CrossoutDb FromJson(string json) => JsonConvert.DeserializeObject<CrossoutDb>(json, CroussoutDBPlus.Converter.Settings);
     }
 
+    public partial class CrossoutDb
+    {
+        public static Item ItemFromJson(string json) => JsonConvert.DeserializeObject<Item>(json, CroussoutDBPlus.Converter.Settings);
+    }
+
+
     public static class Serialize
     {
         public static string ToJson(this CrossoutDb self) => JsonConvert.SerializeObject(self, CroussoutDBPlus.Converter.Settings);

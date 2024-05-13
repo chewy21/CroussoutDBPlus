@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BrightIdeasSoftware;
 
 namespace CroussoutDBPlus
 {
@@ -23,7 +22,8 @@ namespace CroussoutDBPlus
         public string Name { get; private set; }
 
         public long Quantity { get; private set; } // quantitée reel (recipe.number)
- 
+        //public long TypeId { get; set; }
+
         public string FormatBuyPrice { get; private set; } // prix valeur haute (Item.)
 
         public string FormatSellPrice { get; private set; } // prix valeur basse
@@ -54,6 +54,7 @@ namespace CroussoutDBPlus
             
             this.Name = recipe.Item.Name;
             this.Quantity = recipe.Number;
+            //this.TypeId = recipe.Item.TypeId;
             this.FormatBuyPrice = recipe.Item.FormatBuyPrice;
             this.FormatSellPrice = recipe.Item.FormatSellPrice;
             this.FormatCraftingBuySum = recipe.Item.FormatCraftingBuySum;

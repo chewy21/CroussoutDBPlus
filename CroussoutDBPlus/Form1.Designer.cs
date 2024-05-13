@@ -47,10 +47,16 @@ namespace CroussoutDBPlus
             this.buttonExpandAll = new System.Windows.Forms.Button();
             this.buttonCollapseAll = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.menuStripMain = new System.Windows.Forms.MenuStrip();
+            this.objectListViewRessourceTotal = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListViewRessourceTotal)).BeginInit();
             this.SuspendLayout();
             // 
             // lblProgress
@@ -126,10 +132,12 @@ namespace CroussoutDBPlus
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.treeListViewItemRecipe, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.treeListViewItemRecipe, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.menuStripMain, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.objectListViewRessourceTotal, 0, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // tableLayoutPanel2
@@ -184,6 +192,47 @@ namespace CroussoutDBPlus
             resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             // 
+            // menuStripMain
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.menuStripMain, 4);
+            resources.ApplyResources(this.menuStripMain, "menuStripMain");
+            this.menuStripMain.Name = "menuStripMain";
+            // 
+            // objectListViewRessourceTotal
+            // 
+            this.objectListViewRessourceTotal.AllColumns.Add(this.olvColumn2);
+            this.objectListViewRessourceTotal.AllColumns.Add(this.olvColumn3);
+            this.objectListViewRessourceTotal.AllColumns.Add(this.olvColumn4);
+            this.objectListViewRessourceTotal.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.objectListViewRessourceTotal.CellEditUseWholeCell = false;
+            this.objectListViewRessourceTotal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn2,
+            this.olvColumn3,
+            this.olvColumn4});
+            this.tableLayoutPanel1.SetColumnSpan(this.objectListViewRessourceTotal, 2);
+            this.objectListViewRessourceTotal.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.objectListViewRessourceTotal, "objectListViewRessourceTotal");
+            this.objectListViewRessourceTotal.HasCollapsibleGroups = false;
+            this.objectListViewRessourceTotal.HideSelection = false;
+            this.objectListViewRessourceTotal.Name = "objectListViewRessourceTotal";
+            this.objectListViewRessourceTotal.UseCompatibleStateImageBehavior = false;
+            this.objectListViewRessourceTotal.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Name";
+            resources.ApplyResources(this.olvColumn2, "olvColumn2");
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Id";
+            resources.ApplyResources(this.olvColumn3, "olvColumn3");
+            // 
+            // olvColumn4
+            // 
+            this.olvColumn4.AspectName = "Quantity";
+            resources.ApplyResources(this.olvColumn4, "olvColumn4");
+            // 
             // Form1
             // 
             this.AcceptButton = this.buttonItemUpdate;
@@ -196,10 +245,12 @@ namespace CroussoutDBPlus
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListViewRessourceTotal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -221,6 +272,11 @@ namespace CroussoutDBPlus
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         public BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
         private System.Windows.Forms.CheckBox cbSaveSearchedItem;
+        private System.Windows.Forms.MenuStrip menuStripMain;
+        private BrightIdeasSoftware.ObjectListView objectListViewRessourceTotal;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private BrightIdeasSoftware.OLVColumn olvColumn4;
     }
 }
 
