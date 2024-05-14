@@ -1,7 +1,7 @@
 ﻿
 namespace CroussoutDBPlus
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -30,7 +30,7 @@ namespace CroussoutDBPlus
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.lblProgress = new System.Windows.Forms.Label();
             this.comboBoxItemName = new System.Windows.Forms.ComboBox();
             this.buttonItemUpdate = new System.Windows.Forms.Button();
@@ -46,17 +46,30 @@ namespace CroussoutDBPlus
             this.buttonOptRoute = new System.Windows.Forms.Button();
             this.buttonExpandAll = new System.Windows.Forms.Button();
             this.buttonCollapseAll = new System.Windows.Forms.Button();
+            this.cbUpdateToOptiRoad = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
-            this.objectListViewRessourceTotal = new BrightIdeasSoftware.ObjectListView();
+            this.recettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBoxAddRecipe = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBoxRecipeMangement = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBoxCustomRecipeHandling = new System.Windows.Forms.ToolStripMenuItem();
+            this.objectListViewResourceTotal = new BrightIdeasSoftware.ObjectListView();
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objectListViewResourceRecomended = new BrightIdeasSoftware.ObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.labelResourceTotal = new System.Windows.Forms.Label();
+            this.labelResourceRecomendedTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.objectListViewRessourceTotal)).BeginInit();
+            this.menuStripMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListViewResourceTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListViewResourceRecomended)).BeginInit();
             this.SuspendLayout();
             // 
             // lblProgress
@@ -66,7 +79,7 @@ namespace CroussoutDBPlus
             // 
             // comboBoxItemName
             // 
-            this.comboBoxItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.comboBoxItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             resources.ApplyResources(this.comboBoxItemName, "comboBoxItemName");
             this.comboBoxItemName.FormattingEnabled = true;
@@ -137,7 +150,10 @@ namespace CroussoutDBPlus
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.menuStripMain, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.objectListViewRessourceTotal, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.objectListViewResourceTotal, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.objectListViewResourceRecomended, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.labelResourceTotal, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.labelResourceRecomendedTotal, 1, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // tableLayoutPanel2
@@ -159,11 +175,12 @@ namespace CroussoutDBPlus
             // tableLayoutPanel3
             // 
             resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
-            this.tableLayoutPanel3.Controls.Add(this.lblProgress, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.buttonOptRoute, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.buttonExpandAll, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.buttonCollapseAll, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.buttonItemUpdate, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lblProgress, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.cbUpdateToOptiRoad, 1, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             // 
             // buttonOptRoute
@@ -187,6 +204,14 @@ namespace CroussoutDBPlus
             this.buttonCollapseAll.UseVisualStyleBackColor = true;
             this.buttonCollapseAll.Click += new System.EventHandler(this.buttonCollapseAll_Click);
             // 
+            // cbUpdateToOptiRoad
+            // 
+            resources.ApplyResources(this.cbUpdateToOptiRoad, "cbUpdateToOptiRoad");
+            this.cbUpdateToOptiRoad.Checked = true;
+            this.cbUpdateToOptiRoad.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbUpdateToOptiRoad.Name = "cbUpdateToOptiRoad";
+            this.cbUpdateToOptiRoad.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel4
             // 
             resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
@@ -194,29 +219,59 @@ namespace CroussoutDBPlus
             // 
             // menuStripMain
             // 
+            this.menuStripMain.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.tableLayoutPanel1.SetColumnSpan(this.menuStripMain, 4);
             resources.ApplyResources(this.menuStripMain, "menuStripMain");
+            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recettesToolStripMenuItem});
             this.menuStripMain.Name = "menuStripMain";
             // 
-            // objectListViewRessourceTotal
+            // recettesToolStripMenuItem
             // 
-            this.objectListViewRessourceTotal.AllColumns.Add(this.olvColumn2);
-            this.objectListViewRessourceTotal.AllColumns.Add(this.olvColumn3);
-            this.objectListViewRessourceTotal.AllColumns.Add(this.olvColumn4);
-            this.objectListViewRessourceTotal.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.objectListViewRessourceTotal.CellEditUseWholeCell = false;
-            this.objectListViewRessourceTotal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.recettesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBoxAddRecipe,
+            this.toolStripTextBoxRecipeMangement,
+            this.toolStripTextBoxCustomRecipeHandling});
+            this.recettesToolStripMenuItem.Name = "recettesToolStripMenuItem";
+            resources.ApplyResources(this.recettesToolStripMenuItem, "recettesToolStripMenuItem");
+            // 
+            // toolStripTextBoxAddRecipe
+            // 
+            this.toolStripTextBoxAddRecipe.Name = "toolStripTextBoxAddRecipe";
+            resources.ApplyResources(this.toolStripTextBoxAddRecipe, "toolStripTextBoxAddRecipe");
+            this.toolStripTextBoxAddRecipe.Click += new System.EventHandler(this.toolStripTextBoxAddRecipe_Click);
+            // 
+            // toolStripTextBoxRecipeMangement
+            // 
+            this.toolStripTextBoxRecipeMangement.Name = "toolStripTextBoxRecipeMangement";
+            resources.ApplyResources(this.toolStripTextBoxRecipeMangement, "toolStripTextBoxRecipeMangement");
+            // 
+            // toolStripTextBoxCustomRecipeHandling
+            // 
+            this.toolStripTextBoxCustomRecipeHandling.Checked = true;
+            this.toolStripTextBoxCustomRecipeHandling.CheckOnClick = true;
+            this.toolStripTextBoxCustomRecipeHandling.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripTextBoxCustomRecipeHandling.Name = "toolStripTextBoxCustomRecipeHandling";
+            resources.ApplyResources(this.toolStripTextBoxCustomRecipeHandling, "toolStripTextBoxCustomRecipeHandling");
+            // 
+            // objectListViewResourceTotal
+            // 
+            this.objectListViewResourceTotal.AllColumns.Add(this.olvColumn2);
+            this.objectListViewResourceTotal.AllColumns.Add(this.olvColumn3);
+            this.objectListViewResourceTotal.AllColumns.Add(this.olvColumn4);
+            this.objectListViewResourceTotal.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.objectListViewResourceTotal.CellEditUseWholeCell = false;
+            this.objectListViewResourceTotal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn2,
             this.olvColumn3,
             this.olvColumn4});
-            this.tableLayoutPanel1.SetColumnSpan(this.objectListViewRessourceTotal, 2);
-            this.objectListViewRessourceTotal.Cursor = System.Windows.Forms.Cursors.Default;
-            resources.ApplyResources(this.objectListViewRessourceTotal, "objectListViewRessourceTotal");
-            this.objectListViewRessourceTotal.HasCollapsibleGroups = false;
-            this.objectListViewRessourceTotal.HideSelection = false;
-            this.objectListViewRessourceTotal.Name = "objectListViewRessourceTotal";
-            this.objectListViewRessourceTotal.UseCompatibleStateImageBehavior = false;
-            this.objectListViewRessourceTotal.View = System.Windows.Forms.View.Details;
+            this.objectListViewResourceTotal.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.objectListViewResourceTotal, "objectListViewResourceTotal");
+            this.objectListViewResourceTotal.HasCollapsibleGroups = false;
+            this.objectListViewResourceTotal.HideSelection = false;
+            this.objectListViewResourceTotal.Name = "objectListViewResourceTotal";
+            this.objectListViewResourceTotal.UseCompatibleStateImageBehavior = false;
+            this.objectListViewResourceTotal.View = System.Windows.Forms.View.Details;
             // 
             // olvColumn2
             // 
@@ -233,14 +288,57 @@ namespace CroussoutDBPlus
             this.olvColumn4.AspectName = "Quantity";
             resources.ApplyResources(this.olvColumn4, "olvColumn4");
             // 
-            // Form1
+            // objectListViewResourceRecomended
+            // 
+            this.objectListViewResourceRecomended.AllColumns.Add(this.olvColumn1);
+            this.objectListViewResourceRecomended.AllColumns.Add(this.olvColumn5);
+            this.objectListViewResourceRecomended.AllColumns.Add(this.olvColumn6);
+            this.objectListViewResourceRecomended.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.objectListViewResourceRecomended.CellEditUseWholeCell = false;
+            this.objectListViewResourceRecomended.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn5,
+            this.olvColumn6});
+            this.objectListViewResourceRecomended.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.objectListViewResourceRecomended, "objectListViewResourceRecomended");
+            this.objectListViewResourceRecomended.HideSelection = false;
+            this.objectListViewResourceRecomended.Name = "objectListViewResourceRecomended";
+            this.objectListViewResourceRecomended.UseCompatibleStateImageBehavior = false;
+            this.objectListViewResourceRecomended.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Name";
+            resources.ApplyResources(this.olvColumn1, "olvColumn1");
+            // 
+            // olvColumn5
+            // 
+            this.olvColumn5.AspectName = "Id";
+            resources.ApplyResources(this.olvColumn5, "olvColumn5");
+            // 
+            // olvColumn6
+            // 
+            this.olvColumn6.AspectName = "Quantity";
+            resources.ApplyResources(this.olvColumn6, "olvColumn6");
+            // 
+            // labelResourceTotal
+            // 
+            resources.ApplyResources(this.labelResourceTotal, "labelResourceTotal");
+            this.labelResourceTotal.Name = "labelResourceTotal";
+            // 
+            // labelResourceRecomendedTotal
+            // 
+            resources.ApplyResources(this.labelResourceRecomendedTotal, "labelResourceRecomendedTotal");
+            this.labelResourceRecomendedTotal.Name = "labelResourceRecomendedTotal";
+            // 
+            // MainWindow
             // 
             this.AcceptButton = this.buttonItemUpdate;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.treeListViewItemRecipe)).EndInit();
@@ -250,7 +348,10 @@ namespace CroussoutDBPlus
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.objectListViewRessourceTotal)).EndInit();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListViewResourceTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListViewResourceRecomended)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,10 +374,21 @@ namespace CroussoutDBPlus
         public BrightIdeasSoftware.TreeListView treeListViewItemRecipe;
         private System.Windows.Forms.CheckBox cbSaveSearchedItem;
         private System.Windows.Forms.MenuStrip menuStripMain;
-        private BrightIdeasSoftware.ObjectListView objectListViewRessourceTotal;
+        private BrightIdeasSoftware.ObjectListView objectListViewResourceTotal;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn3;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
+        private BrightIdeasSoftware.ObjectListView objectListViewResourceRecomended;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn5;
+        private BrightIdeasSoftware.OLVColumn olvColumn6;
+        private System.Windows.Forms.Label labelResourceTotal;
+        private System.Windows.Forms.Label labelResourceRecomendedTotal;
+        private System.Windows.Forms.ToolStripMenuItem recettesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripTextBoxAddRecipe;
+        private System.Windows.Forms.ToolStripMenuItem toolStripTextBoxCustomRecipeHandling;
+        private System.Windows.Forms.ToolStripMenuItem toolStripTextBoxRecipeMangement;
+        private System.Windows.Forms.CheckBox cbUpdateToOptiRoad;
     }
 }
 

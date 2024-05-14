@@ -71,9 +71,13 @@ namespace CroussoutDBPlus
             
             this.Children = new List<Node>();
         }
+        public Node(long id, string name, long quantity)
+        {
+            Id = id;
+            //FactionNumber = factionNumber;
+            Name = name;
+            Quantity = quantity;
 
-
-
-
+        }
     }
 }

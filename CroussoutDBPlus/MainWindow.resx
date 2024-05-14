@@ -127,10 +127,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblProgress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 0</value>
+    <value>207, 0</value>
   </data>
   <data name="lblProgress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 37</value>
+    <value>97, 37</value>
   </data>
   <data name="lblProgress.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -154,7 +154,7 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;lblProgress.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="comboBoxItemName.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -205,7 +205,7 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonItemUpdate.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="textBoxItemID.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -303,6 +303,24 @@
   <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="cbSaveSearchedItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbSaveSearchedItem.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="cbSaveSearchedItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>65, 51</value>
+  </data>
+  <data name="cbSaveSearchedItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 18</value>
+  </data>
+  <data name="cbSaveSearchedItem.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="cbSaveSearchedItem.Text" xml:space="preserve">
+    <value>Sauvegarder les items recherchés</value>
+  </data>
   <data name="&gt;&gt;cbSaveSearchedItem.Name" xml:space="preserve">
     <value>cbSaveSearchedItem</value>
   </data>
@@ -319,7 +337,7 @@
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
+    <value>3, 28</value>
   </data>
   <data name="tableLayoutPanel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -351,6 +369,21 @@
   <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="buttonOptRoute.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonOptRoute.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 40</value>
+  </data>
+  <data name="buttonOptRoute.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 31</value>
+  </data>
+  <data name="buttonOptRoute.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="buttonOptRoute.Text" xml:space="preserve">
+    <value>Route Optimale</value>
+  </data>
   <data name="&gt;&gt;buttonOptRoute.Name" xml:space="preserve">
     <value>buttonOptRoute</value>
   </data>
@@ -361,7 +394,22 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonOptRoute.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonExpandAll.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonExpandAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>105, 40</value>
+  </data>
+  <data name="buttonExpandAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 31</value>
+  </data>
+  <data name="buttonExpandAll.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="buttonExpandAll.Text" xml:space="preserve">
+    <value>Etendre tout</value>
   </data>
   <data name="&gt;&gt;buttonExpandAll.Name" xml:space="preserve">
     <value>buttonExpandAll</value>
@@ -373,7 +421,22 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonExpandAll.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonCollapseAll.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonCollapseAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 40</value>
+  </data>
+  <data name="buttonCollapseAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 31</value>
+  </data>
+  <data name="buttonCollapseAll.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="buttonCollapseAll.Text" xml:space="preserve">
+    <value>Reduire Tout</value>
   </data>
   <data name="&gt;&gt;buttonCollapseAll.Name" xml:space="preserve">
     <value>buttonCollapseAll</value>
@@ -385,13 +448,43 @@
     <value>tableLayoutPanel3</value>
   </data>
   <data name="&gt;&gt;buttonCollapseAll.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
+  </data>
+  <data name="cbUpdateToOptiRoad.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbUpdateToOptiRoad.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="cbUpdateToOptiRoad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>105, 3</value>
+  </data>
+  <data name="cbUpdateToOptiRoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 31</value>
+  </data>
+  <data name="cbUpdateToOptiRoad.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="cbUpdateToOptiRoad.Text" xml:space="preserve">
+    <value>Update -&gt; Route opti.</value>
+  </data>
+  <data name="&gt;&gt;cbUpdateToOptiRoad.Name" xml:space="preserve">
+    <value>cbUpdateToOptiRoad</value>
+  </data>
+  <data name="&gt;&gt;cbUpdateToOptiRoad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbUpdateToOptiRoad.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;cbUpdateToOptiRoad.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>316, 23</value>
+    <value>316, 28</value>
   </data>
   <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -415,7 +508,7 @@
     <value>2</value>
   </data>
   <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lblProgress" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonOptRoute" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonExpandAll" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonCollapseAll" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="buttonItemUpdate" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonOptRoute" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="buttonExpandAll" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="buttonCollapseAll" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="buttonItemUpdate" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblProgress" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="cbUpdateToOptiRoad" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,33,33333,Percent,33,33333,Percent,33,33333" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
     <value>3</value>
@@ -424,7 +517,7 @@
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>629, 23</value>
+    <value>629, 28</value>
   </data>
   <data name="tableLayoutPanel4.RowCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -453,11 +546,41 @@
   <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>259, 17</value>
   </metadata>
+  <data name="menuStripMain.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="toolStripTextBoxAddRecipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 24</value>
+  </data>
+  <data name="toolStripTextBoxAddRecipe.Text" xml:space="preserve">
+    <value>Ajouter une recette</value>
+  </data>
+  <data name="toolStripTextBoxRecipeMangement.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 24</value>
+  </data>
+  <data name="toolStripTextBoxRecipeMangement.Text" xml:space="preserve">
+    <value>Gestion des recettes perso</value>
+  </data>
+  <data name="toolStripTextBoxCustomRecipeHandling.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 24</value>
+  </data>
+  <data name="toolStripTextBoxCustomRecipeHandling.Text" xml:space="preserve">
+    <value>Prise en compte des recettes peso</value>
+  </data>
+  <data name="recettesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 24</value>
+  </data>
+  <data name="recettesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Recettes</value>
+  </data>
   <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="menuStripMain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 0, 0</value>
+  </data>
   <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1254, 20</value>
+    <value>1254, 24</value>
   </data>
   <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -478,7 +601,7 @@
     <value>4</value>
   </data>
   <data name="olvColumn2.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Ressource</value>
   </data>
   <data name="olvColumn3.Text" xml:space="preserve">
     <value>Id</value>
@@ -486,35 +609,131 @@
   <data name="olvColumn4.Text" xml:space="preserve">
     <value>Quantité</value>
   </data>
-  <data name="objectListViewRessourceTotal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="objectListViewResourceTotal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="objectListViewRessourceTotal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 819</value>
+  <data name="objectListViewResourceTotal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 820</value>
   </data>
-  <data name="objectListViewRessourceTotal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="objectListViewResourceTotal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
-  <data name="objectListViewRessourceTotal.MenuLabelTurnOffGroups" xml:space="preserve">
+  <data name="objectListViewResourceTotal.MenuLabelTurnOffGroups" xml:space="preserve">
     <value> </value>
   </data>
-  <data name="objectListViewRessourceTotal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 151</value>
+  <data name="objectListViewResourceTotal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>303, 150</value>
   </data>
-  <data name="objectListViewRessourceTotal.TabIndex" type="System.Int32, mscorlib">
+  <data name="objectListViewResourceTotal.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;objectListViewRessourceTotal.Name" xml:space="preserve">
-    <value>objectListViewRessourceTotal</value>
+  <data name="&gt;&gt;objectListViewResourceTotal.Name" xml:space="preserve">
+    <value>objectListViewResourceTotal</value>
   </data>
-  <data name="&gt;&gt;objectListViewRessourceTotal.Type" xml:space="preserve">
+  <data name="&gt;&gt;objectListViewResourceTotal.Type" xml:space="preserve">
     <value>BrightIdeasSoftware.ObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
   </data>
-  <data name="&gt;&gt;objectListViewRessourceTotal.Parent" xml:space="preserve">
+  <data name="&gt;&gt;objectListViewResourceTotal.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;objectListViewRessourceTotal.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;objectListViewResourceTotal.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="olvColumn1.Text" xml:space="preserve">
+    <value>Ressource</value>
+  </data>
+  <data name="olvColumn5.Text" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="olvColumn6.Text" xml:space="preserve">
+    <value>Quantité</value>
+  </data>
+  <data name="objectListViewResourceRecomended.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="objectListViewResourceRecomended.Location" type="System.Drawing.Point, System.Drawing">
+    <value>318, 820</value>
+  </data>
+  <data name="objectListViewResourceRecomended.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="objectListViewResourceRecomended.Size" type="System.Drawing.Size, System.Drawing">
+    <value>303, 150</value>
+  </data>
+  <data name="objectListViewResourceRecomended.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;objectListViewResourceRecomended.Name" xml:space="preserve">
+    <value>objectListViewResourceRecomended</value>
+  </data>
+  <data name="&gt;&gt;objectListViewResourceRecomended.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.ObjectListView, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;objectListViewResourceRecomended.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;objectListViewResourceRecomended.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="labelResourceTotal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelResourceTotal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="labelResourceTotal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 795</value>
+  </data>
+  <data name="labelResourceTotal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 20</value>
+  </data>
+  <data name="labelResourceTotal.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="labelResourceTotal.Text" xml:space="preserve">
+    <value>Total des ressources si tout est crafté :</value>
+  </data>
+  <data name="&gt;&gt;labelResourceTotal.Name" xml:space="preserve">
+    <value>labelResourceTotal</value>
+  </data>
+  <data name="&gt;&gt;labelResourceTotal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelResourceTotal.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;labelResourceTotal.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="labelResourceRecomendedTotal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelResourceRecomendedTotal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="labelResourceRecomendedTotal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>316, 795</value>
+  </data>
+  <data name="labelResourceRecomendedTotal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 20</value>
+  </data>
+  <data name="labelResourceRecomendedTotal.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="labelResourceRecomendedTotal.Text" xml:space="preserve">
+    <value>Total des ressources pour les crafts recomandé :</value>
+  </data>
+  <data name="&gt;&gt;labelResourceRecomendedTotal.Name" xml:space="preserve">
+    <value>labelResourceRecomendedTotal</value>
+  </data>
+  <data name="&gt;&gt;labelResourceRecomendedTotal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelResourceRecomendedTotal.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;labelResourceRecomendedTotal.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -523,7 +742,7 @@
     <value>5, 5</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1254, 975</value>
@@ -544,7 +763,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="treeListViewItemRecipe" Row="2" RowSpan="2" Column="0" ColumnSpan="4" /&gt;&lt;Control Name="tableLayoutPanel2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel4" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="menuStripMain" Row="0" RowSpan="1" Column="0" ColumnSpan="4" /&gt;&lt;Control Name="objectListViewRessourceTotal" Row="4" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Absolute,20,Absolute,80,Percent,50,Percent,50,Absolute,160" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="treeListViewItemRecipe" Row="2" RowSpan="2" Column="0" ColumnSpan="4" /&gt;&lt;Control Name="tableLayoutPanel2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel4" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="menuStripMain" Row="0" RowSpan="1" Column="0" ColumnSpan="4" /&gt;&lt;Control Name="objectListViewResourceTotal" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="objectListViewResourceRecomended" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelResourceTotal" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="labelResourceRecomendedTotal" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Absolute,25,Absolute,80,Percent,50,Percent,50,Absolute,20,Absolute,160" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="treeListViewItemRecipe.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -556,13 +775,13 @@
     <value>132, 17</value>
   </metadata>
   <data name="treeListViewItemRecipe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 105</value>
+    <value>5, 110</value>
   </data>
   <data name="treeListViewItemRecipe.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
   <data name="treeListViewItemRecipe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1244, 704</value>
+    <value>1244, 680</value>
   </data>
   <data name="treeListViewItemRecipe.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -578,117 +797,6 @@
   </data>
   <data name="&gt;&gt;treeListViewItemRecipe.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="cbSaveSearchedItem.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cbSaveSearchedItem.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="cbSaveSearchedItem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>65, 51</value>
-  </data>
-  <data name="cbSaveSearchedItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 18</value>
-  </data>
-  <data name="cbSaveSearchedItem.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="cbSaveSearchedItem.Text" xml:space="preserve">
-    <value>Sauvegarder les items recherchés</value>
-  </data>
-  <data name="&gt;&gt;cbSaveSearchedItem.Name" xml:space="preserve">
-    <value>cbSaveSearchedItem</value>
-  </data>
-  <data name="&gt;&gt;cbSaveSearchedItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbSaveSearchedItem.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;cbSaveSearchedItem.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonOptRoute.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="buttonOptRoute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 40</value>
-  </data>
-  <data name="buttonOptRoute.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 31</value>
-  </data>
-  <data name="buttonOptRoute.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="buttonOptRoute.Text" xml:space="preserve">
-    <value>Route Optimale</value>
-  </data>
-  <data name="&gt;&gt;buttonOptRoute.Name" xml:space="preserve">
-    <value>buttonOptRoute</value>
-  </data>
-  <data name="&gt;&gt;buttonOptRoute.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonOptRoute.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;buttonOptRoute.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="buttonExpandAll.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="buttonExpandAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 40</value>
-  </data>
-  <data name="buttonExpandAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 31</value>
-  </data>
-  <data name="buttonExpandAll.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="buttonExpandAll.Text" xml:space="preserve">
-    <value>Etendre tout</value>
-  </data>
-  <data name="&gt;&gt;buttonExpandAll.Name" xml:space="preserve">
-    <value>buttonExpandAll</value>
-  </data>
-  <data name="&gt;&gt;buttonExpandAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonExpandAll.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;buttonExpandAll.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="buttonCollapseAll.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="buttonCollapseAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 40</value>
-  </data>
-  <data name="buttonCollapseAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 31</value>
-  </data>
-  <data name="buttonCollapseAll.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="buttonCollapseAll.Text" xml:space="preserve">
-    <value>Reduire Tout</value>
-  </data>
-  <data name="&gt;&gt;buttonCollapseAll.Name" xml:space="preserve">
-    <value>buttonCollapseAll</value>
-  </data>
-  <data name="&gt;&gt;buttonCollapseAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonCollapseAll.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;buttonCollapseAll.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -720,6 +828,30 @@
   <data name="&gt;&gt;hotItemStyle1.Type" xml:space="preserve">
     <value>BrightIdeasSoftware.HotItemStyle, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
   </data>
+  <data name="&gt;&gt;recettesToolStripMenuItem.Name" xml:space="preserve">
+    <value>recettesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;recettesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBoxAddRecipe.Name" xml:space="preserve">
+    <value>toolStripTextBoxAddRecipe</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBoxAddRecipe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBoxRecipeMangement.Name" xml:space="preserve">
+    <value>toolStripTextBoxRecipeMangement</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBoxRecipeMangement.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBoxCustomRecipeHandling.Name" xml:space="preserve">
+    <value>toolStripTextBoxCustomRecipeHandling</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBoxCustomRecipeHandling.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;olvColumn2.Name" xml:space="preserve">
     <value>olvColumn2</value>
   </data>
@@ -738,8 +870,26 @@
   <data name="&gt;&gt;olvColumn4.Type" xml:space="preserve">
     <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
   </data>
+  <data name="&gt;&gt;olvColumn1.Name" xml:space="preserve">
+    <value>olvColumn1</value>
+  </data>
+  <data name="&gt;&gt;olvColumn1.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;olvColumn5.Name" xml:space="preserve">
+    <value>olvColumn5</value>
+  </data>
+  <data name="&gt;&gt;olvColumn5.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
+  <data name="&gt;&gt;olvColumn6.Name" xml:space="preserve">
+    <value>olvColumn6</value>
+  </data>
+  <data name="&gt;&gt;olvColumn6.Type" xml:space="preserve">
+    <value>BrightIdeasSoftware.OLVColumn, ObjectListView, Version=2.9.1.1072, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Form1</value>
+    <value>MainWindow</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

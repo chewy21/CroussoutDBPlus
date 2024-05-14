@@ -22,7 +22,7 @@ using CroussoutDBPlus.Properties;
 
 namespace CroussoutDBPlus
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         //__________//                                                  //__________//
         //__________//         INIT                                     //__________//
@@ -70,7 +70,7 @@ namespace CroussoutDBPlus
         //__________//                                                  //__________//
         //__________//         INIT Functions                           //__________//
         //__________//                                                  //__________//
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
 
@@ -95,15 +95,11 @@ namespace CroussoutDBPlus
             }
             else {
                 // chargement de weaponlist.json dans la classe weaponlist
-                wljson = LoadWeaponListFromJsonFile();
+                wljson = LoadFromJsonFile("data/weaponlist.json");
                 //WeaponList weaponList = JsonConvert.DeserializeObject<WeaponList>(wljson);
                 weaponList = JsonConvert.DeserializeObject<WeaponList>(wljson);
             }
 
-
-            //// chargement de weaponlist.json dans la classe weaponlist
-            //wljson = LoadWeaponListFromJson();
-            //WeaponList weaponList = JsonConvert.DeserializeObject<WeaponList>(wljson);
 
             // synchronisation de la classe weaponlist avec la combobox de selection d'arme
             BindingSource bindingSource = new BindingSource();
@@ -112,14 +108,24 @@ namespace CroussoutDBPlus
             comboBoxItemName.DisplayMember = "Name";
             comboBoxItemName.ValueMember = "Id";
 
-
-            //factionList = new ImageList();
-            //for (int i = 1; i<=10; i++)
-            //{
-            //    string tempString = i.ToString();
-            //    factionList.Images.Add(tempString, Image.FromFile("data/" + i.ToString() + ".png"));
-            //}
-
+            //Checking if /data/weaponlist.json exist
+            string resourceListFile = "resourcelist.json";
+            filePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "data", resourceListFile);
+            if (!System.IO.File.Exists(filePath))
+            {
+                // Create a new empty weaponlist.json file
+                System.IO.File.Create(filePath).Dispose();
+                string jstest = JsonConvert.SerializeObject(resourcesTotal);
+                //// and save is to the file 
+                SaveJsonToFile(jstest, "data", "resourcelist.json");
+            }
+            else
+            {
+                // chargement de weaponlist.json dans la classe weaponlist
+                wljson = LoadFromJsonFile("data/" + resourceListFile);
+                //
+                resourcesTotal = JsonConvert.DeserializeObject<Resources>(wljson);
+            }
 
 
             // set the delegate that the tree uses to know if a node is expandable
@@ -128,13 +134,10 @@ namespace CroussoutDBPlus
             treeListViewItemRecipe.ChildrenGetter = x => (x as Node).Children;
 
 
-
-
-
             // creation des colones pour TLV
             BrightIdeasSoftware.OLVColumn NameColumn = new BrightIdeasSoftware.OLVColumn();
             BrightIdeasSoftware.OLVColumn FactionColumn = new BrightIdeasSoftware.OLVColumn();
-            //BrightIdeasSoftware.OLVColumn IdColumn = new BrightIdeasSoftware.OLVColumn();
+            BrightIdeasSoftware.OLVColumn IdColumn = new BrightIdeasSoftware.OLVColumn();
             //BrightIdeasSoftware.OLVColumn ImageIndexColumn = new BrightIdeasSoftware.OLVColumn();
             BrightIdeasSoftware.OLVColumn QuantityColumn = new BrightIdeasSoftware.OLVColumn();
             BrightIdeasSoftware.OLVColumn FormatBuyPriceColumn = new BrightIdeasSoftware.OLVColumn();
@@ -146,7 +149,7 @@ namespace CroussoutDBPlus
 
             NameColumn.AspectName = "Name";
             FactionColumn.AspectName = "Faction";
-            //IdColumn.AspectName = "Id";
+            IdColumn.AspectName = "Id";
             //ImageIndexColumn.AspectName = "imageIndex";
             QuantityColumn.AspectName = "Quantity";
             FormatBuyPriceColumn.AspectName = "FormatBuyPrice";
@@ -158,7 +161,7 @@ namespace CroussoutDBPlus
 
             NameColumn.Text = "Nom";
             FactionColumn.Text = "Faction";
-            //IdColumn.Text = "Id";
+            IdColumn.Text = "Id";
             //ImageIndexColumn.Text = "Icone";
             QuantityColumn.Text = "Quantitée";
             FormatBuyPriceColumn.Text = "achat (Val. basse)";
@@ -178,12 +181,13 @@ namespace CroussoutDBPlus
             // customize Buy craft column
             BuyCraftColumn.IsHeaderVertical = false;
             BuyCraftColumn.CheckBoxes = true;
+            BuyCraftColumn.IsEditable = false;
 
             //ImageIndexColumn.ShowTextInHeader = false;
 
             treeListViewItemRecipe.Columns.Add(NameColumn);
             treeListViewItemRecipe.Columns.Add(FactionColumn);
-            //treeListViewItemRecipe.Columns.Add(IdColumn);
+            treeListViewItemRecipe.Columns.Add(IdColumn);
             //treeListViewItemRecipe.Columns.Add(ImageIndexColumn);
             treeListViewItemRecipe.Columns.Add(QuantityColumn);
             treeListViewItemRecipe.Columns.Add(FormatBuyPriceColumn);
@@ -193,8 +197,9 @@ namespace CroussoutDBPlus
             treeListViewItemRecipe.Columns.Add(BuyCraftColumn);
             treeListViewItemRecipe.Columns.Add(FormatCraftingMarginColumn);
 
-            //Size size = new Size(48, 48);
-            //treeListViewItemRecipe.SmallImageList.ImageSize = size; // <-- fait bugger le bordel (1x icone en 16x16 deux fois plus d'icones 3ieme fois icones en 32x32 ?!)
+
+
+
 
 
             treeListViewItemRecipe.AutoResizeColumns();
@@ -207,15 +212,7 @@ namespace CroussoutDBPlus
                 return node.Id.ToString();
             };
 
-            //FactionColumn.ImageGetter = delegate (object rowObject)
-            //{
-            //    Node node = (Node)rowObject;
-            //    //Console.WriteLine(node.FactionNumber);
-            //    return node.FactionNumber;
-            //};
 
-            //ImageDecoration faction = new ImageDecoration();
-            //faction.Image = Image.FromFile("data/1.png");
 
         }
 
@@ -238,21 +235,31 @@ namespace CroussoutDBPlus
             // chargement du json dans actualRecipe
             CrossoutDb actualRecipe = CrossoutDb.FromJson(json);
 
+            // saving combo box item selected item index
             int tempCbIndex = comboBoxItemName.SelectedIndex;
-            // add item to the weaponList
-            Weapon weapon = new Weapon(actualRecipe.Recipe.Item.Id.ToString(), actualRecipe.Recipe.Item.Name);
-            weaponList.weapons.Add(weapon);
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = weaponList.weapons;
-            comboBoxItemName.DataSource = bindingSource;
-            comboBoxItemName.DisplayMember = "Name";
-            comboBoxItemName.ValueMember = "Id";
-            comboBoxItemName.SelectedIndex = tempCbIndex;
+            // Checking if weapon is missing of the list 
+            bool isWeaponMissing = !weaponList.weapons.Any(r => r.Id == actualRecipe.Recipe.Item.Id.ToString());
+            if (isWeaponMissing)
+            {
+                // creation of an item weapon with missing weapon id 
+                Weapon weapon = new Weapon(actualRecipe.Recipe.Item.Id.ToString(), actualRecipe.Recipe.Item.Name);
+                weaponList.weapons.Add(weapon);
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = weaponList.weapons;
+                comboBoxItemName.DataSource = bindingSource;
+                comboBoxItemName.DisplayMember = "Name";
+                comboBoxItemName.ValueMember = "Id";
+                // Re Set combo box to previously selected value
+                comboBoxItemName.SelectedIndex = tempCbIndex;
+            }
+            // if saving of weapoin is selected
             if (cbSaveSearchedItem.Checked)
             {
-                //weaponList = JsonConvert.DeserializeObject<WeaponList>(wljson);
+                // serialize weapon list 
                 string js = JsonConvert.SerializeObject(weaponList);
-                SaveWeaponListJsonToFile(js);
+                // and save is to the file 
+                //SaveWeaponListJsonToFile(js);
+                SaveJsonToFile(js,"data","weaponlist.json");
             }
 
             // Cleaning of imageList to be ready for new icones of item in node
@@ -284,29 +291,34 @@ namespace CroussoutDBPlus
             // Assign listOfItem to treeListView
             treeListViewItemRecipe.Roots = listOfItem;
 
-            // Expand first node of TreeviewList whenever it worth being crafted or not
-            treeListViewItemRecipe.Expand(parent1);
+            if(cbUpdateToOptiRoad.Checked)
+            {
+                buttonOptRoute.PerformClick();
+            }
+            else
+            {
+                // Expand first node of TreeviewList whenever it worth being crafted or not
+                treeListViewItemRecipe.Expand(parent1);
+            }
+
+            //// Expand first node of TreeviewList whenever it worth being crafted or not
+            //treeListViewItemRecipe.Expand(parent1);
 
             // Refresh TLV for background image to show correctly
             treeListViewItemRecipe.RefreshOverlays();
 
-            //##########// Ressource calculation
-            // creation of resources object
-            //Resources resourcesTotal = new Resources
-            //{
-            //    resourceList = new List<Resource>()
-            //};
+            //##########// Total Resource calculation
 
-
-
+            resourcesTotal.ResetAllQuantities();    
 
             resourcesTotal = ResourcesTotalCalculation(actualRecipe.Recipe, resourcesTotal);
 
-            //Generator.GenerateColumns(objectListViewRessourceTotal, typeof(Resource));
-            objectListViewRessourceTotal.SetObjects(resourcesTotal.resourceList);
-            objectListViewRessourceTotal.AutoResizeColumns();
-            //objectListViewRessourceTotal.MenuLabelTurnOffGroups = true;
-            objectListViewRessourceTotal.ShowGroups = false;
+
+            objectListViewResourceTotal.SetObjects(resourcesTotal.resourceList);
+
+            objectListViewResourceTotal.AutoResizeColumns();
+
+            objectListViewResourceTotal.ShowGroups = false;
 
         }
 
@@ -321,7 +333,7 @@ namespace CroussoutDBPlus
                     {
                         if (recipe.Item.Id == res.Id)
                         {
-                            Console.WriteLine("add :" + recipe.Item.Id + " quantity " + recipe.Number);
+                            //Console.WriteLine("add :" + recipe.Item.Id + " quantity " + recipe.Number);
                             res.Quantity += recipe.Number;
 
                         }
@@ -331,7 +343,7 @@ namespace CroussoutDBPlus
                     if (isItemMissing)
                     {
                         // Handle the case where the resource is missing
-                        Console.WriteLine($"Item with Id {recipe.Item.Id} is missing");
+                        //Console.WriteLine($"Item with Id {recipe.Item.Id} is missing");
                         Resource tempRes = new Resource(recipe.Item);
                         tempRes.Quantity = recipe.Number;
                         tempResources.resourceList.Add(tempRes);
@@ -476,13 +488,14 @@ namespace CroussoutDBPlus
 
         //---------- fonction de sauvegarde de weaponList en json ----------//
 
-        public void SaveWeaponListJsonToFile(string js)
+
+        public void SaveJsonToFile(string js, string folder, string file)
         {
             //string filePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "weaponlist.json");
             //System.IO.File.WriteAllText(filePath, js);
 
             string directoryPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string filePath = System.IO.Path.Combine(directoryPath, "data", "weaponlist.json");
+            string filePath = System.IO.Path.Combine(directoryPath, folder, file);
             if (!System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
             {
                 System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(filePath));
@@ -492,9 +505,9 @@ namespace CroussoutDBPlus
             //System.IO.File.WriteAllText(@"C:\path.json", json);
         }
 
-        public string LoadWeaponListFromJsonFile()
+        public string LoadFromJsonFile(string localPath)
         {
-            string js = File.ReadAllText("data/weaponlist.json");
+            string js = File.ReadAllText(localPath);
 
 
             return js;
@@ -586,5 +599,13 @@ namespace CroussoutDBPlus
             }
         }
 
+        private void toolStripTextBoxAddRecipe_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the recipeCreation form
+            recipeCreation newForm = new recipeCreation();
+
+            // Show the new form
+            newForm.Show();
+        }
     }
 }
